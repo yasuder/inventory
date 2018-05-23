@@ -115,6 +115,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryNode.cpp" />
+    <ClCompile Include="BinarySearchTree.cpp" />
+    <ClCompile Include="Classics.cpp" />
+    <ClCompile Include="Comedy.cpp" />
+    <ClCompile Include="Customer.cpp" />
+    <ClCompile Include="Drama.cpp" />
+    <ClCompile Include="Entry.cpp" />
+    <ClCompile Include="HashTable.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Movie.cpp" />
+    <ClCompile Include="Transaction.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BinaryNode.h" />
+    <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="Classics.h" />
+    <ClInclude Include="Comedy.h" />
+    <ClInclude Include="Customer.h" />
+    <ClInclude Include="Drama.h" />
+    <ClInclude Include="Entry.h" />
+    <ClInclude Include="HashTable.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Movie.h" />
+    <ClInclude Include="Transaction.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
