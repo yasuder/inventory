@@ -21,7 +21,7 @@ public:
     int getStock();
     string getTitle();
     string getDirector();
-    int getRealseYear();
+    int getReleaseYear();
     char getType();
     virtual bool operator >(Movie& m)const;
     virtual bool operator >=(Movie& m)const;

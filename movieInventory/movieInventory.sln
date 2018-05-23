@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "movieInventory", "movieInventory\movieInventory.vcxproj", "{F6E2F426-8103-4D41-AA95-66309E262587}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "movieInventory", "movieInventory.vcxproj", "{F6E2F426-8103-4D41-AA95-66309E262587}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {3AF67F09-465F-4405-8465-55E6FCCD93C0}
+		SolutionGuid = {7CCA6CAA-DA09-423E-A47A-72F0E7CA31BB}
 	EndGlobalSection
 EndGlobal

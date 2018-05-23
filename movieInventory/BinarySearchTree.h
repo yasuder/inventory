@@ -5,6 +5,7 @@
 #ifndef CSS343ASS_4_BINARYSEARCHTREE_H
 #define CSS343ASS_4_BINARYSEARCHTREE_H
 
+#include "BinaryNode.h"
 
 class BinarySearchTree {
 

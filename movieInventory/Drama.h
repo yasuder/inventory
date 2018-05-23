@@ -12,7 +12,7 @@ class Drama:public Movie {
 public:
     Drama(int stock, string title, string director, int releaseYear);
 
-    ~DramaMovie();
+    ~Drama();
     virtual void print();
     virtual bool operator>(const Movie &m) const;
     virtual bool operator>=(const Movie &m) const;
