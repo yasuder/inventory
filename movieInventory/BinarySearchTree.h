@@ -8,7 +8,12 @@
 #include "BinaryNode.h"
 
 class BinarySearchTree {
+public:
+	BinarySearchTree();
+	virtual ~BinarySearchTree();
 
+private:
+	BinaryNode root;
 };
 
 

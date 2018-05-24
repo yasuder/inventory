@@ -1,8 +1,16 @@
 #pragma once
-class BinaryNode
-{
+
+#include "Movie.h"
+class BinaryNode {
 public:
 	BinaryNode();
 	virtual ~BinaryNode();
+
+	Movie data;
+	BinaryNode* left;
+	BinaryNode* right;
+
+private:
+
 };
 

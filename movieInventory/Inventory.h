@@ -1,7 +1,16 @@
 //
 // Created by Goitom Hadishe on 5/16/18.
 //
-#include<string>
+#include <string>
+#include <vector>
+
+#include "BinarySearchTree.h"
+#include "Customer.h"
+#include "HashTable.h"
+#include "Movie.h"
+#include "RentalTable.h"
+#include "TransactionList.h"
+
 using namespace std;
 
 #ifndef CSS343ASS_4_INVENTORY_H
@@ -9,9 +18,32 @@ using namespace std;
 
 
 class Inventory {
-private:
-    HashTable<char moveType, BinarySearchTree *moveList>;
+public:
+	Inventory();
+	virtual ~Inventory();
 
+	bool addMovie(char type, int stock, string director, string title, string extra);
+	bool addCustomer(int id, string lastName, string firstName);
+
+	bool borrowMovie(string title, int customerID);
+	bool returnMovie(string title, int customerID);
+
+	void printInventory();
+	void printHisotry(int customerID);
+	TransactionList getHistory(int customerID);
+
+private:
+	Customer* getCustomerAtIndex(int customerIndex); // from the 2D array
+	Movie* getMovieAtIndex(int movieIndex); // from the 2D array
+
+	HashTable<int, Movie*> movieList;
+	BinarySearchTree comedyTree; // stores Comedy objects in order specified
+	BinarySearchTree dramaTree; // stores Drama objects in order specified
+	BinarySearchTree classicTree; // stores Classic objects in order specified
+	RentalTable rentals; // 2D vector of bool where true = renting
+	HashTable<int, Customer*> customerList;
+	vector<string> movieIndex; // index = movieIndex (in 2D array), value = movie title
+	vector<int> customerIndex; // index = customerIndex (in 2D array), value = customerID
 };
 
 

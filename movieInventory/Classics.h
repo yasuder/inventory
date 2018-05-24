@@ -1,17 +1,12 @@
 //
 // Created by Goitom Hadishe on 5/15/18.
 //
-#include<string>
 #include "Movie.h"
-using namespace std;
 #ifndef CSS343ASS_4_CLASSICS_H
 #define CSS343ASS_4_CLASSICS_H
 
 
-class Classic:public Movie {
-private:
-    int realseMonth;
-    string majorChar;
+class Classic: public Movie {
 public:
     Classic(int stock, string title, string Director,
                  string majorFirst, string majorLast, int releaseMonth, int releaseYear);		//default constructor
@@ -20,12 +15,10 @@ public:
     // this includes stock counts
     int getReleaseMonth();
     string getMajorChar();
-    virtual void print();
-    virtual bool operator>(const Movie &m) const;
-    virtual bool operator>=(const Movie &m) const;
-    virtual bool operator==(const Movie &m) const;
 
-
+private:
+	int realseMonth;
+	string majorChar;
 };
 
 

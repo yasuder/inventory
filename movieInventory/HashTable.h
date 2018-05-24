@@ -5,20 +5,27 @@
 #ifndef CSS343ASS_4_HASHTABLE_H
 #define CSS343ASS_4_HASHTABLE_H
 
-template<class KeyType, class ValueType>
+template<typename KeyType, class ValueType>
 class HashTable {
 public:
-	virtual bool isEmpty() const = 0;
-	virtual int getNumberOfEntries() const = 0;
-	virtual bool add(const KeyType& searchKey, const ValueType& newValue) = 0;
-	virtual bool remove(const KeyType& searchKey) = 0;
-	virtual void clear() = 0;
-	virtual ValueType getValue(const KeyType& searchKey) const = 0;
-	virtual bool contains(const KeyType& searchKey) const = 0;
+	HashTable();
+	virtual ~HashTable();
+
+	bool isEmpty() const = 0;
+	int getNumberOfEntries() const = 0;
+	bool add(const ValueType& newValue) = 0;
+	bool remove(const KeyType& searchKey) = 0;
+	void clear() = 0;
+	ValueType getValue(const KeyType& searchKey) const = 0;
+	bool contains(const KeyType& searchKey) const = 0;
 
 private:
 	int size;
+	double loadFactor; // depends on how your implement the collision handling
+	HashEntry<KeyType, ValueType> **arr; // array implementation of map/dictionary
 
+	KeyType hashCalculator(const ValueType& newValue); // hashes the given value to determine index (hash) for table
+	bool add(const KeyType& searchKey, const ValueType& newValue) = 0; // searchKey = result of hashCalculator(), newValue is value passed into public add()
 };
 
 
