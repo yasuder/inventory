@@ -121,12 +121,14 @@
     <ClCompile Include="Comedy.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Drama.cpp" />
-    <ClCompile Include="Entry.cpp" />
+    <ClCompile Include="HashEntry.cpp" />
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Movie.cpp" />
-    <ClCompile Include="Transaction.cpp" />
+    <ClCompile Include="RentalTable.cpp" />
+    <ClCompile Include="TransactionList.cpp" />
+    <ClCompile Include="TransactionNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinaryNode.h" />
@@ -135,11 +137,13 @@
     <ClInclude Include="Comedy.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Drama.h" />
-    <ClInclude Include="Entry.h" />
+    <ClInclude Include="HashEntry.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Movie.h" />
-    <ClInclude Include="Transaction.h" />
+    <ClInclude Include="RentalTable.h" />
+    <ClInclude Include="TransactionList.h" />
+    <ClInclude Include="TransactionNode.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
