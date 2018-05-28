@@ -15,8 +15,14 @@ public:
 	bool add(Movie *m);
 	bool contains(Movie *m);
 
+	BinaryNode *root;
+
 private:
-	BinaryNode root;
+	int size;
+
+	BinaryNode* clear(BinaryNode *curr);
+	bool addHelper(Movie *m, BinaryNode *curr);
+	bool containsHelper(Movie *m, BinaryNode *curr);
 };
 
 

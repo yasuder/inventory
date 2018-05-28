@@ -4,7 +4,7 @@
 class BinaryNode {
 public:
 	BinaryNode();
-	BinaryNode(Movie m, BinaryNode *left, BinaryNode *right);
+	BinaryNode(Movie *m, BinaryNode *left, BinaryNode *right);
 	virtual ~BinaryNode();
 
 	Movie data;
