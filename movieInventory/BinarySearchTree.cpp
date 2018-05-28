@@ -3,3 +3,18 @@
 //
 
 #include "BinarySearchTree.h"
+
+BinarySearchTree::BinarySearchTree() {
+
+}
+BinarySearchTree::~BinarySearchTree() {
+
+}
+
+bool BinarySearchTree::add(Movie *m) {
+
+}
+
+bool BinarySearchTree::contains(Movie *m) {
+
+}

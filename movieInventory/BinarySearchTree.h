@@ -12,6 +12,9 @@ public:
 	BinarySearchTree();
 	virtual ~BinarySearchTree();
 
+	bool add(Movie *m);
+	bool contains(Movie *m);
+
 private:
 	BinaryNode root;
 };
