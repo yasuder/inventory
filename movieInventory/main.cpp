@@ -8,6 +8,7 @@ using namespace std;
 int main() {
     std::cout << "Hello, World!" << std::endl;
 	cout << "LinkedList Test" << endl;
+	cout << "****************" << endl;
 	LinkedList<string>nameList;
 	nameList.add("Andy");
 	nameList.add("Becky");
@@ -26,20 +27,27 @@ int main() {
 	numList.print();
 	cout << endl;
 
-	/*
 	cout << "HashTable test" << endl;
+	cout << "****************" << endl;
 	HashTable<string, int> table;
-	cout << "initial table size: " << table.getSize() << endl;
-	table.put("Amy", 1);
-	table.put("Bob", 2);
-	table.put("Cam", 3);
-	cout << "value for Amy: " << table.get("Amy") << endl;
-	cout << "table size after 3 puts: " << table.getSize() << endl;
+	cout << "initial table size: " << table.getNumberOfEntries() << endl;
+	table.add("Amy", 1);
+	table.add("Bob", 2);
+	table.add("Cam", 3);
+	table.add("D", 4);
+	table.add("X", 5);
+	cout << "Value for Cam: " << table.getValue("Cam") << endl;
+	cout << "Value for D: " << table.getValue("D") << endl;
+	cout << "Value for X: " << table.getValue("X") << endl;
+	cout << "Value for Amy: " << table.getValue("Amy") << endl;
+	cout << "Table size after 5 adds: " << table.getNumberOfEntries() << endl;
 	cout << boolalpha;
-	cout << "table contains the key 'Amy': " << table.containsKey("Amy") << endl;
-	cout << "table contains the key 'Jon': " << table.containsKey("Jon") << endl;
-	*/
-
+	cout << "Table contains the key 'Amy': " << table.containsKey("Amy") << endl;
+	cout << "Table contains the key 'Jon': " << table.containsKey("Jon") << endl;
+	cout << "Remove X success: " << table.remove("X") << endl;
+	cout << "Table size after a successful remove: " << table.getNumberOfEntries() << endl;
+	cout << "Remove y success: " << table.remove("y") << endl;
+	cout << "Table size after a unsuccessful remove: " << table.getNumberOfEntries() << endl;
 	system("pause");
-    return 0;
+	return 0;
 }
