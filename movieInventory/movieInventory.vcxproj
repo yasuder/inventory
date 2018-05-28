@@ -122,7 +122,6 @@
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Drama.cpp" />
     <ClCompile Include="Entry.cpp" />
-    <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Movie.cpp" />
@@ -138,6 +137,7 @@
     <ClInclude Include="Entry.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="linkedList.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="Transaction.h" />
   </ItemGroup>

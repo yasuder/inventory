@@ -1,9 +1,6 @@
-//
-// Created by Goitom Hadishe on 5/16/18.
-//
-
 #include<string>
 #include "TransactionList.h";
+
 using namespace std;
 
 #ifndef CSS343ASS_4_CUSTOMER_H
