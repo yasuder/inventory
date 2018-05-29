@@ -21,6 +21,10 @@ void BinarySearchTree::clear() {
 	clearHelper(root);
 }
 
+void BinarySearchTree::print() {
+	printHelper(root);
+}
+
 bool BinarySearchTree::contains(Movie *m) {
 	return containsHelper(m, root);
 }
@@ -76,4 +80,19 @@ BinaryNode* BinarySearchTree::clear(BinaryNode *curr) {
 	}
 	delete curr;
 	return nullptr;
+}
+
+void BinarySearchTree::printHelper(BinaryNode *curr) {
+	if (curr != nullptr) {
+		if (curr->left != nullptr) {
+			printHelper(curr->left);
+			cout << curr->data->getTitle() << endl;
+		}
+		cout << curr->data->getTitle() << endl;
+		if (curr->right != nullptr) {
+			printHelper(curr->right);
+			cout << curr->data->getTitle() << endl;
+		}
+
+	}
 }

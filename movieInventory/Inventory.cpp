@@ -59,15 +59,27 @@ bool Inventory::addCustomer(int id, string lastName, string firstName) {
 }
 
 bool Inventory::borrowMovie(string title, int customerID) {
-
+	Movie *m = movieList.getValue(title);
+	Customer *c = customerList.getValue(customerID);
+	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getIndex()][c->getIndex()]) {
+		m->borrowBy(customerID);
+		return true;
+	}
+	return false;
 }
 
 bool Inventory::returnMovie(string title, int customerID) {
-
+	Movie *m = movieList.getValue(title);
+	Customer *c = customerList.getValue(customerID);
+	if (m != nullptr && c != nullptr && rentals[m->getIndex()][c->getIndex()]) {
+		m->returnBy(customerID);
+		return true;
+	}
+	return false;
 }
 
 void Inventory::printInventory() {
-
+	movieTree.print();
 }
 
 void Inventory::printHistory(int customerID) {
