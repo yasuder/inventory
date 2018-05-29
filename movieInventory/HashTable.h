@@ -16,6 +16,12 @@ struct HashEntry {
 		key = k;
 		value = v;
 	}
+	
+	//Copy constructor
+	HashEntry(HashEntry &other) {
+		key = other.getKey();
+		value = other.getValue();
+	}
 
 	//Accessors
 	KeyType getKey()const {
@@ -31,7 +37,6 @@ template<class KeyType, class ValueType>
 class HashTable
 {
 public:
-
 	//Default constructor
 	HashTable();
 
@@ -51,7 +56,6 @@ public:
 	//Removes the key(and its corresponding value) from the HashTable
 	bool remove(const KeyType &key);
 
-
 	//Tests if the HashTable maps no keys to values
 	bool isEmpty() const;
 
@@ -61,11 +65,15 @@ public:
 	//Returns the capacity of the HashTable
 	int getCapacity()const;
 
+	//Clears the hashTable so that it contains no keys
+	void clear();
+
 private:
-	int capacity = 5;
-	HashEntry<KeyType, ValueType> **table;
+	int capacity = 1;
 	int numEntries = 0;
 	double loadFactor = 0.75;
+	HashEntry<KeyType, ValueType> **table;
+
 	//Hashing function
 	int getHash(const KeyType &key)const;
 };
@@ -97,25 +105,38 @@ inline void HashTable<KeyType, ValueType>::add(const KeyType &key, const ValueTy
 
 		//Rehash
 		for (int i = 0; i < capacity / 2; i++) {
-			if (table[i] == NULL) {
-				newTable[i] = NULL;
-			}
-			HashEntry<KeyType, ValueType>* current = table[i];
-			while (current != nullptr) {
-				int index = getHash(current->getKey());
-				newTable[index] = current;
-				current = current->next;
+			if (table[i] != NULL) {
+				HashEntry<KeyType, ValueType>* current = table[i];
+				while (current != nullptr) {
+					int index = getHash(current->getKey());
+					if (newTable[index] == NULL) {
+						// Copy only itself, ignore next
+						HashEntry<KeyType, ValueType>* entry = new HashEntry<KeyType, ValueType>(*current);
+						newTable[index] = entry;
+					}
+					else {
+						HashEntry<KeyType, ValueType>* entry = newTable[index];
+						while (entry->next != nullptr) {
+							entry = entry->next;
+						}
+						entry->next = current;
+					}
+					current = current->next;
+				}
 			}
 		}
+
 		//Assigning new bigger table to old table
 		table = newTable;
 	}
+
 	int index = getHash(key);
 	HashEntry<KeyType, ValueType>* h = new HashEntry<KeyType, ValueType>(key, value);
 	if (table[index] == NULL) {
 		table[index] = h;
 		numEntries++;
-	}else {
+	}
+	else {
 		HashEntry<KeyType, ValueType>* current = table[index];
 		while (current->next != nullptr) {
 			current = current->next;
@@ -128,32 +149,22 @@ inline void HashTable<KeyType, ValueType>::add(const KeyType &key, const ValueTy
 template<class KeyType, class ValueType>
 inline bool HashTable<KeyType, ValueType>::containsKey(const KeyType &key)
 {
-	int index = getHash(key);
-	if (index >= 0 && index < capacity) {
-		if (table[index]->getKey() == key) {
-			return true;
-		}
-	}
-	return false;
+	return getValue(key) != NULL;
 }
 
 template<class KeyType, class ValueType>
 inline ValueType HashTable<KeyType, ValueType>::getValue(const KeyType &key) const
 {
 	int index = getHash(key);
-	if (table[index] == NULL || index >= capacity) {
-		return NULL;
-	}else {
-		HashEntry<KeyType, ValueType>* current = table[index];
-	
-		while (current->next != nullptr) {
-			if (current->getKey() == key) {
-				return current->getValue();
-			}
-			current = current->next;
+	HashEntry<KeyType, ValueType>* current = table[index];
+
+	while (current != nullptr) {
+		if (current->getKey() == key) {
+			return current->getValue();
 		}
-		return current->getValue();
+		current = current->next;
 	}
+
 	return NULL;
 }
 
@@ -168,15 +179,17 @@ inline bool HashTable<KeyType, ValueType>::remove(const KeyType &key)
 		previous = current;
 		current = current->next;
 	}
-		
+
 	if (current == nullptr) {
 		cout << "Key not found!" << endl;
-		return false; 
-	}else{
+		return false;
+	}
+	else {
 		if (previous == nullptr) {
 			table[index] = current->next;
-		}else{
-				previous->next = current->next;
+		}
+		else {
+			previous->next = current->next;
 		}
 		delete current;
 		numEntries--;
@@ -203,6 +216,21 @@ inline int HashTable<KeyType, ValueType>::getCapacity() const
 }
 
 template<class KeyType, class ValueType>
+inline void HashTable<KeyType, ValueType>::clear()
+{
+	for (int i = 0; i < capacity; i++) {
+		HashEntry<KeyType, ValueType>* prev = NULL;
+		HashEntry<KeyType, ValueType>* current = table[i];
+
+		while (current != nullptr) {
+			prev = current;
+			current = current->next;
+			remove(prev->getKey());
+		}
+	}
+}
+
+template<class KeyType, class ValueType>
 inline int HashTable<KeyType, ValueType>::getHash(const KeyType &key) const
 {
 	int hash = 0;
@@ -214,4 +242,3 @@ inline int HashTable<KeyType, ValueType>::getHash(const KeyType &key) const
 	}
 	return hash % capacity;
 }
-

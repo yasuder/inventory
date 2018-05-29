@@ -8,6 +8,7 @@ Customer::Customer(int id, string fn, string ln, int ctn)
 	firstName = fn;
 	lastName = ln;
 	customerTableNum = ctn;
+	transactions = TransactionList();
 }
 
 Customer::~Customer(){}
@@ -30,4 +31,13 @@ string Customer::getLastName() const
 int Customer::getCustomerTableNum() const
 {
 	return customerTableNum;
+}
+
+TransactionList Customer::getTransactions() const
+{
+	return transactions;
+}
+
+bool Customer::addTransaction(char actionType, string movieTitle) {
+	return transactions.add(actionType, movieTitle);
 }

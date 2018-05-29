@@ -42,7 +42,7 @@ private:
 };
 
 template<class Type>
-LinkedList<Type>::LinkedList()
+inline LinkedList<Type>::LinkedList()
 {
 	head = nullptr;
 	next = nullptr;
@@ -50,7 +50,7 @@ LinkedList<Type>::LinkedList()
 }
 
 template<class Type>
-LinkedList<Type>::~LinkedList() {}
+inline LinkedList<Type>::~LinkedList() {}
 
 template<class Type>
 inline void LinkedList<Type>::add(const Type & obj)
@@ -62,13 +62,13 @@ inline void LinkedList<Type>::add(const Type & obj)
 }
 
 template<class Type>
-int LinkedList<Type>::getSize()const
+inline int LinkedList<Type>::getSize()const
 {
 	return size;
 }
 
 template<class Type>
-void LinkedList<Type>::print()
+inline void LinkedList<Type>::print()
 {
 	if (getSize() == 0) {
 		return;
