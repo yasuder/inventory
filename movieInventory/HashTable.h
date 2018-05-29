@@ -17,7 +17,7 @@ struct HashEntry {
 		value = v;
 	}
 
-	//Getters
+	//Accessors
 	KeyType getKey()const {
 		return key;
 	}
@@ -58,11 +58,14 @@ public:
 	//Returns the number of keys in the HashTable
 	int getNumberOfEntries()const;
 
+	//Returns the capacity of the HashTable
+	int getCapacity()const;
+
 private:
-	int capacity = 20;
+	int capacity = 5;
 	HashEntry<KeyType, ValueType> **table;
 	int numEntries = 0;
-
+	double loadFactor = 0.75;
 	//Hashing function
 	int getHash(const KeyType &key)const;
 };
@@ -82,13 +85,37 @@ inline HashTable<KeyType, ValueType>::~HashTable() {}
 template<class KeyType, class ValueType>
 inline void HashTable<KeyType, ValueType>::add(const KeyType &key, const ValueType &value)
 {
+	if (numEntries > capacity*loadFactor) {
+		//Create bigger table
+		HashEntry<KeyType, ValueType> **newTable = new HashEntry<KeyType, ValueType> *[capacity * 2];
+		capacity = capacity * 2;
+
+		//Set initial value of array/table to be NULL
+		for (int i = 0; i < capacity; i++) {
+			newTable[i] = NULL;
+		}
+
+		//Rehash
+		for (int i = 0; i < capacity / 2; i++) {
+			if (table[i] == NULL) {
+				newTable[i] = NULL;
+			}
+			HashEntry<KeyType, ValueType>* current = table[i];
+			while (current != nullptr) {
+				int index = getHash(current->getKey());
+				newTable[index] = current;
+				current = current->next;
+			}
+		}
+		//Assigning new bigger table to old table
+		table = newTable;
+	}
 	int index = getHash(key);
 	HashEntry<KeyType, ValueType>* h = new HashEntry<KeyType, ValueType>(key, value);
 	if (table[index] == NULL) {
 		table[index] = h;
 		numEntries++;
-	}
-	else {
+	}else {
 		HashEntry<KeyType, ValueType>* current = table[index];
 		while (current->next != nullptr) {
 			current = current->next;
@@ -134,23 +161,26 @@ template<class KeyType, class ValueType>
 inline bool HashTable<KeyType, ValueType>::remove(const KeyType &key)
 {
 	int index = getHash(key);
-	if (table[index] == NULL) {
-		cout << "Invalid key, remove unsuccessful!" << endl;
-		return false;
-	}
-	else {
-		HashEntry<KeyType, ValueType>* current = table[index];
+	HashEntry<KeyType, ValueType>* previous = nullptr;
+	HashEntry<KeyType, ValueType>* current = table[index];
 
-		while (current != nullptr) {
-			if (current->getKey() == key) {
-				delete current;
-				numEntries--;
-				return true;
-			}
-			current = current->next;
+	while (current != nullptr && current->getKey() != key) {
+		previous = current;
+		current = current->next;
+	}
+		
+	if (current == nullptr) {
+		cout << "Key not found!" << endl;
+		return false; 
+	}else{
+		if (previous == nullptr) {
+			table[index] = current->next;
+		}else{
+				previous->next = current->next;
 		}
-		cout << "Invalid key, remove unsuccessful !" << endl;
-		return false;
+		delete current;
+		numEntries--;
+		return true;
 	}
 }
 
@@ -167,6 +197,12 @@ inline int HashTable<KeyType, ValueType>::getNumberOfEntries() const
 }
 
 template<class KeyType, class ValueType>
+inline int HashTable<KeyType, ValueType>::getCapacity() const
+{
+	return capacity;
+}
+
+template<class KeyType, class ValueType>
 inline int HashTable<KeyType, ValueType>::getHash(const KeyType &key) const
 {
 	int hash = 0;
@@ -178,36 +214,4 @@ inline int HashTable<KeyType, ValueType>::getHash(const KeyType &key) const
 	}
 	return hash % capacity;
 }
-
-
-/*
-#ifndef CSS343ASS_4_HASHTABLE_H
-#define CSS343ASS_4_HASHTABLE_H
-
-template<typename KeyType, class ValueType>
-class HashTable {
-public:
-	HashTable();
-	virtual ~HashTable();
-	bool isEmpty() const = 0;
-	int getNumberOfEntries() const = 0;
-	bool add(const ValueType& newValue) = 0;
-	bool remove(const KeyType& searchKey) = 0;
-	void clear() = 0;
-	ValueType getValue(const KeyType& searchKey) const = 0;
-	bool contains(const KeyType& searchKey) const = 0;
-
-private:
-	int numEntries;
-	double loadFactor; // depends on how your implement the collision handling
-	HashEntry<KeyType, ValueType> **arr; // array implementation of map/dictionary
-
-	KeyType hashCalculator(const ValueType& newValue); // hashes the given value to determine index (hash) for table
-	bool add(const KeyType& searchKey, const ValueType& newValue) = 0; // searchKey = result of hashCalculator(), newValue is value passed into public add()
-};
-
-
-#endif //CSS343ASS_4_HASHTABLE_H
-
-*/
 
