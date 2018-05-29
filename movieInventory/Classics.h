@@ -8,8 +8,7 @@
 
 class Classic: public Movie {
 public:
-    Classic(int stock, string title, string Director,
-                 string majorFirst, string majorLast, int releaseMonth, int releaseYear);		//default constructor
+    Classic(int stock, string title, string Director, string extra);		//default constructor
     ~Classic();	//destructor
     //returns information about the classic as formatted output.
     // this includes stock counts

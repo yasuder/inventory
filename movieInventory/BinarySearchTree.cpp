@@ -17,6 +17,10 @@ bool BinarySearchTree::add(Movie *m) {
 	return addHelper(m, root);
 }
 
+void BinarySearchTree::clear() {
+	clearHelper(root);
+}
+
 bool BinarySearchTree::contains(Movie *m) {
 	return containsHelper(m, root);
 }
@@ -50,6 +54,19 @@ bool BinarySearchTree::containsHelper(Movie *m, BinaryNode *curr) {
 		}
 	}
 	return false;
+}
+
+void BinarySearchTree::clearHelper(BinaryNode *curr) {
+	if (curr != nullptr) {
+		if (curr->isLeaf()) {
+			delete curr;
+		}
+		else {
+			clearHelper(curr->left);
+			clearHelper(curr->right);
+			delete curr;
+		}
+	}
 }
 
 BinaryNode* BinarySearchTree::clear(BinaryNode *curr) {

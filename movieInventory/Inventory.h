@@ -29,7 +29,7 @@ public:
 	bool returnMovie(string title, int customerID);
 
 	void printInventory();
-	void printHisotry(int customerID);
+	void printHistory(int customerID);
 	TransactionList getHistory(int customerID);
 
 private:
@@ -37,9 +37,7 @@ private:
 	Movie* getMovieAtIndex(int movieIndex); // from the 2D array
 
 	HashTable<int, Movie*> movieList;
-	BinarySearchTree comedyTree; // stores Comedy objects in order specified
-	BinarySearchTree dramaTree; // stores Drama objects in order specified
-	BinarySearchTree classicTree; // stores Classic objects in order specified
+	BinarySearchTree movieTree;
 	RentalTable rentals; // 2D vector of bool where true = renting
 	HashTable<int, Customer*> customerList;
 	vector<string> movieIndex; // index = movieIndex (in 2D array), value = movie title
