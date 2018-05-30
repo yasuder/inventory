@@ -3,6 +3,10 @@
 //
 
 #include "Inventory.h"
+#include "Movie.h"
+#include "Comedy.h"
+#include "Drama.h"
+#include "Classics.h"
 
 Inventory::Inventory() {
 	movieList = HashTable<int, Movie*>();
@@ -23,14 +27,14 @@ Inventory::~Inventory() {
 bool Inventory::addMovie(char type, int stock, string director, string title, string extra) {
 	Movie *m;
 	if (type == 'F') {
-		*m = new Comedy(stock, title, director, std::stoi(extra));
+		m = new Comedy(stock, title, director, std::stoi(extra));
 	}
 	else if (type == 'D') {
-		*m = new Drama(stock, title, director, std::stoi(extra));
+		m = new Drama(stock, title, director, std::stoi(extra));
 	}
 	else if (type == 'C') {
 
-		*m - new Classic(stock, title, director, extra);
+		m = new Classic(stock, title, director, extra);
 	}
 	else {
 		return false;

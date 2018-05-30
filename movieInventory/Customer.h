@@ -1,32 +1,37 @@
-//
-// Created by Goitom Hadishe on 5/16/18.
-//
+#pragma once
+#include <string>
+#include "linkedlist.h"
+#include "TransactionList.h"
+#include "TransactionNode.h"
 
-#include<string>
-#include "TransactionList.h";
 using namespace std;
 
-#ifndef CSS343ASS_4_CUSTOMER_H
-#define CSS343ASS_4_CUSTOMER_H
-
-
-class Customer {
+class Customer
+{
 public:
-	Customer(string lastName, string firstName);
-	virtual ~Customer();
+	//Default constructor
+	Customer();
 
-	int getCustomerID();
-	string getLastName();
-	string getFirstName();
-	TransactionList getTransactions();
+	//Constructor
+	Customer(int id, string fn, string ln, int ctn);
+
+	// Default Destructor
+	~Customer();
+
+	//Accessors
+	int getCustomerID()const;
+	string getFirstName()const;
+	string getLastName()const;
+	int getCustomerTableNum()const;
+
+	TransactionList getTransactions()const;
+
+	bool addTransaction(char actionType, string movieTitle);
 
 private:
 	int customerID;
 	string lastName;
 	string firstName;
-	TransactionList history;
-	int customerTableNum;	// index for 2D vector
+	int customerTableNum; //index for 2D vector
+	TransactionList transactions;
 };
-
-
-#endif //CSS343ASS_4_CUSTOMER_H
