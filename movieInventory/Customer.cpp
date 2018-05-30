@@ -11,6 +11,7 @@ Customer::Customer(int id, string fn, string ln, int ctn)
 	transactions = TransactionList();
 }
 
+//Destructor
 Customer::~Customer(){}
 
 int Customer::getCustomerID() const
