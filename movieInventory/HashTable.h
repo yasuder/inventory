@@ -20,11 +20,7 @@ public:
 	bool contains(const KeyType& searchKey) const = 0;
 
 private:
-	int size;
-	double loadFactor; // depends on how your implement the collision handling
-	HashEntry<KeyType, ValueType> **arr; // array implementation of map/dictionary
-
-	int getHash(const KeyType &key)
+	
 };
 
 
