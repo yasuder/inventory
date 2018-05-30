@@ -4,7 +4,7 @@ Customer::Customer(){}
 
 Customer::Customer(int id, string fn, string ln, int ctn)
 {
-	customerId = id;
+	customerID = id;
 	firstName = fn;
 	lastName = ln;
 	customerTableNum = ctn;
@@ -13,9 +13,9 @@ Customer::Customer(int id, string fn, string ln, int ctn)
 
 Customer::~Customer(){}
 
-int Customer::getCustomerId() const
+int Customer::getCustomerID() const
 {
-	return customerId;
+	return customerID;
 }
 
 string Customer::getFirstName() const
