@@ -24,8 +24,7 @@ private:
 	double loadFactor; // depends on how your implement the collision handling
 	HashEntry<KeyType, ValueType> **arr; // array implementation of map/dictionary
 
-	KeyType hashCalculator(const ValueType& newValue); // hashes the given value to determine index (hash) for table
-	bool add(const KeyType& searchKey, const ValueType& newValue) = 0; // searchKey = result of hashCalculator(), newValue is value passed into public add()
+	int getHash(const KeyType &key)
 };
 
 
