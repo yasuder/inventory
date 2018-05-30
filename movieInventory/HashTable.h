@@ -165,7 +165,7 @@ inline ValueType HashTable<KeyType, ValueType>::getValue(const KeyType &key) con
 		current = current->next;
 	}
 
-	return -1;
+	return nullptr;
 }
 
 template<class KeyType, class ValueType>

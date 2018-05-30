@@ -43,26 +43,28 @@ bool Inventory::addMovie(char type, int stock, string director, string title, st
 	// add col to rentals 2D vector
 		// rentals.add(m);
 	// add to movieList
-	movieList.add(m);
+		// movieList.add(m);
 
 	// add to movieIndex
 	movieIndex.push_back(m->getTitle());
+	return true;
 }
 
 bool Inventory::addCustomer(int id, string lastName, string firstName) {
-	Customer *temp = new Customer(lastName, firstName);
-	customerList.add(temp);
+	Customer *temp = new Customer(id, firstName, lastName, id);
+	customerList.add(temp->getCustomerID(), temp);
 
 	customerIndex.push_back(temp->getCustomerID());
 
 	// add row to rentals 2D vector
 		// rentals.add(temp);
+	return true; // CHANGE THIS
 }
 
 bool Inventory::borrowMovie(string title, int customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getIndex()][c->getIndex()]) {
+	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getIndex()][c->getCustomerTableNum()]) {
 		m->borrowBy(customerID);
 		return true;
 	}
@@ -72,7 +74,7 @@ bool Inventory::borrowMovie(string title, int customerID) {
 bool Inventory::returnMovie(string title, int customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && c != nullptr && rentals[m->getIndex()][c->getIndex()]) {
+	if (m != nullptr && c != nullptr && rentals[m->getIndex()][c->getCustomerTableNum()]) {
 		m->returnBy(customerID);
 		return true;
 	}
