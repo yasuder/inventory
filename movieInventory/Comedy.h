@@ -8,7 +8,7 @@
 
 class Comedy: public Movie {
 public:
-	Comedy(int stock, char movieType, string title, string director, int releaseYear);
+	Comedy(int stock, string title, string director, int releaseYear);
 	virtual ~Comedy();
 
 private:
