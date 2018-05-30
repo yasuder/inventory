@@ -4,9 +4,6 @@
 
 #include "Inventory.h"
 #include "Movie.h"
-#include "Comedy.h"
-#include "Drama.h"
-#include "Classics.h"
 
 Inventory::Inventory() {
 	movieList = HashTable<int, Movie*>();

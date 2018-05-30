@@ -8,6 +8,9 @@
 #include "Customer.h"
 #include "HashTable.h"
 #include "Movie.h"
+#include "Comedy.h"
+#include "Drama.h"
+#include "Classics.h"
 #include "RentalTable.h"
 #include "TransactionList.h"
 
