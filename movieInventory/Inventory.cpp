@@ -20,7 +20,7 @@ Inventory::Inventory() {
 Inventory::~Inventory() {
 	movieList.clear();
 	movieTree.clear();
-	rentals.clear();
+	//rentals.clear();
 	customerList.clear();
 }
 
@@ -34,35 +34,36 @@ bool Inventory::addMovie(string str) {
 	getline(ss, title, ',');
 	getline(ss, extra, ',');
 
-	Movie *m;
-	switch (type) {
-	case 'F':
-		//F, 10, Nora Ephron, Sleepless in Seattle, 1993
-		m = new Comedy(stoi(stock), title, director, stoi(extra));
-		break;
-	case 'D':
-		//D, 10, Barry Levinson, Good Morning Vietnam, 1988
-		m = new Drama(stoi(stock), title, director, stoi(extra));
-		break;
-	case 'C':
-		//C, 10, Victor Fleming, The Wizard of Oz, Judy Garland 7 1939
-		m = new Classic(stoi(stock), title, director, extra);
-		break;
-	default:
-		return false;
-	}
+	//Movie *m;
+	//switch (type) {
+	//case 'F':
+	//	//F, 10, Nora Ephron, Sleepless in Seattle, 1993
+	//	m = new Comedy(stoi(stock), title, director, stoi(extra));
+	//	break;
+	//case 'D':
+	//	//D, 10, Barry Levinson, Good Morning Vietnam, 1988
+	//	m = new Drama(stoi(stock), title, director, stoi(extra));
+	//	break;
+	//case 'C':
+	//	//C, 10, Victor Fleming, The Wizard of Oz, Judy Garland 7 1939
+	//	m = new Classic(stoi(stock), title, director, extra);
+	//	break;
+	//default:
+	//	cout << "invalid movie code" << endl;
+	//	return false;
+	//}
 
-	// add to BST
-	if (!movieTree.add(m)) {
-		return false;
-	}
-	// add col to rentals 2D vector
-		// rentals.add(m);
-	// add to movieList
-		// movieList.add(m);
-	
-	// add to movieIndex
-	movieIndex.push_back(m->getTitle());
+	//// add to BST
+	//if (!movieTree.add(m)) {
+	//	return false;
+	//}
+	//// add col to rentals 2D vector
+	//	// rentals.add(m);
+	//// add to movieList
+	//	// movieList.add(m);
+	//
+	//// add to movieIndex
+	//movieIndex.push_back(m->getTitle());
 	return true;
 }
 
@@ -77,25 +78,97 @@ bool Inventory::addCustomer(string id, string lastName, string firstName) {
 		// rentals.add(temp);
 	return true; // CHANGE THIS
 }
+//
+//bool Inventory::borrowMovie(string title, string customerID) {
+//	Movie *m = movieList.getValue(title);
+//	Customer *c = customerList.getValue(customerID);
+//	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getIndex()][c->getCustomerTableNum()]) {
+//		m->borrowBy(customerID);
+//		return true;
+//	}
+//	return false;
+//}
+//
+//bool Inventory::returnMovie(string title, string customerID) {
+//	Movie *m = movieList.getValue(title);
+//	Customer *c = customerList.getValue(customerID);
+//	if (m != nullptr && c != nullptr && rentals[m->getIndex()][c->getCustomerTableNum()]) {
+//		m->returnBy(customerID);
+//		return true;
+//	}
+//	return false;
+//}
 
-bool Inventory::borrowMovie(string title, string customerID) {
-	Movie *m = movieList.getValue(title);
-	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getIndex()][c->getCustomerTableNum()]) {
-		m->borrowBy(customerID);
-		return true;
-	}
-	return false;
-}
+void Inventory::executeCommand(string str)
+{
+	stringstream ss(str);
+	string type, customerId, mediaType, movieType, director, title, extra;
+	getline(ss, type, ' ');
+	
+	char action = type[0];
+	switch (action) {
+	case 'B':
+	case 'R':
+		//B 8000 D F You've Got Mail, 1998
+		getline(ss, customerId, ' ');
+		getline(ss, mediaType, ' ');
 
-bool Inventory::returnMovie(string title, string customerID) {
-	Movie *m = movieList.getValue(title);
-	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && c != nullptr && rentals[m->getIndex()][c->getCustomerTableNum()]) {
-		m->returnBy(customerID);
-		return true;
+		if (mediaType != "D") {
+			cout << "invalid media code: " << mediaType << endl;
+			return;
+		}
+
+		getline(ss, movieType, ' ');
+
+		if (movieType == "F") {
+			//B 8000 D F You've Got Mail, 1998
+			getline(ss, title, ' ');
+		}
+		else if (movieType == "D") {
+			//B 1000 D D Barry Levinson, Good Morning Vietnam,
+			getline(ss, extra, ',');
+			getline(ss, title, ',');
+		}
+		else if (movieType == "C") {
+			//B 4444 D C 2 1971 Malcolm McDowell
+			getline(ss, extra, ' ');
+			getline(ss, extra, ' ');
+			getline(ss, director, ' ');
+
+			// NO TITLE IN BORROW COMMAND??
+		}
+		else {
+			cout << "invalid video code: " << movieType << endl;
+			return;
+		}
+
+		if (customerList.containsKey(customerId)) {
+			if (type == "B") {
+				cout << "borrow" << title << customerId << endl;
+				//borrowMovie(title, customerId);
+			}
+			else {
+				cout << "return" << title << customerId << endl;
+				//returnMovie(title, customerId);
+			}
+		}
+		else {
+			cout << "incorrect customer ID:" << customerId << endl;
+		}
+
+		break;
+	case 'I':
+		printInventory();
+		break;
+	case 'H':
+		getline(ss, customerId, ' ');
+		cout << customerId << endl;
+		//customerList.getValue(customerId)->getTransactions().printHistory();
+		break;
+	default:
+		cout << "invalid action code: " << action << endl;
+		break;
 	}
-	return false;
 }
 
 void Inventory::printInventory() {
@@ -155,7 +228,7 @@ void Inventory::readCommandFile(string filename)
 	if (infile.is_open()) {
 		string line;
 		while (getline(infile, line)) {
-
+			executeCommand(line);
 			ss.clear();
 		}
 		infile.close();

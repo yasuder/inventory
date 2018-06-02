@@ -149,7 +149,7 @@ inline void HashTable<KeyType, ValueType>::add(const KeyType &key, const ValueTy
 template<class KeyType, class ValueType>
 inline bool HashTable<KeyType, ValueType>::containsKey(const KeyType &key)
 {
-	return getValue(key) != -1;
+	return getValue(key) != nullptr;
 }
 
 template<class KeyType, class ValueType>
