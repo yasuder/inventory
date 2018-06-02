@@ -7,8 +7,7 @@ using namespace std;
 #ifndef CSS343ASS_4_CLASSICS_H
 #define CSS343ASS_4_CLASSICS_H
 
-
-class Classic :public Movie {
+class Classic: public Movie {
 private:
 	int realseMonth;
 	string majorFirsNa;

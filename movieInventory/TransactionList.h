@@ -8,8 +8,11 @@ public:
 	virtual ~TransactionList();
 
 	void printHistory();
+	bool add(char actionType, string movieTitle);
 
 private:
 	TransactionNode * front;
+
+	TransactionNode* clear(TransactionNode *curr);
 };
 

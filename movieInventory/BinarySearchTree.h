@@ -12,8 +12,21 @@ public:
 	BinarySearchTree();
 	virtual ~BinarySearchTree();
 
+	bool add(Movie *m);
+	bool contains(Movie *m);
+	void clear();
+	void print();
+
+	BinaryNode *root;
+
 private:
-	BinaryNode root;
+	int size;
+
+	BinaryNode* clear(BinaryNode *curr);
+	bool addHelper(Movie *m, BinaryNode *curr);
+	bool containsHelper(Movie *m, BinaryNode *curr);
+	void clearHelper(BinaryNode *curr);
+	void printHelper(BinaryNode *curr);
 };
 
 

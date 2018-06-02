@@ -8,6 +8,9 @@
 #include "Customer.h"
 #include "HashTable.h"
 #include "Movie.h"
+#include "Comedy.h"
+#include "Drama.h"
+#include "Classics.h"
 #include "RentalTable.h"
 #include "TransactionList.h"
 
@@ -22,26 +25,29 @@ public:
 	Inventory();
 	virtual ~Inventory();
 
-	bool addMovie(char type, int stock, string director, string title, string extra);
-	bool addCustomer(int id, string lastName, string firstName);
+	//bool addMovie(char type, int stock, string director, string title, string extra);
+	bool addCustomer(string id, string lastName, string firstName);
 
-	bool borrowMovie(string title, int customerID);
-	bool returnMovie(string title, int customerID);
+	//bool borrowMovie(string title, int customerID);
+	//bool returnMovie(string title, int customerID);
 
-	void printInventory();
-	void printHisotry(int customerID);
-	TransactionList getHistory(int customerID);
+	//void printInventory();
+	void printHistory(string customerID);
+	TransactionList getHistory(string customerID);
+
+	void readCustomerFile(string filename);
+	void readMovieFile(string filename);
+	void readCommandFile(string filename);
+
 
 private:
 	Customer* getCustomerAtIndex(int customerIndex); // from the 2D array
-	Movie* getMovieAtIndex(int movieIndex); // from the 2D array
+	//Movie* getMovieAtIndex(int movieIndex); // from the 2D array
 
-	HashTable<int, Movie*> movieList;
-	BinarySearchTree comedyTree; // stores Comedy objects in order specified
-	BinarySearchTree dramaTree; // stores Drama objects in order specified
-	BinarySearchTree classicTree; // stores Classic objects in order specified
+	//HashTable<string, Movie*> movieList;
+	//BinarySearchTree movieTree;
 	RentalTable rentals; // 2D vector of bool where true = renting
-	HashTable<int, Customer*> customerList;
+	HashTable<string, Customer*> customerList;
 	vector<string> movieIndex; // index = movieIndex (in 2D array), value = movie title
 	vector<int> customerIndex; // index = customerIndex (in 2D array), value = customerID
 };

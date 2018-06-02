@@ -17,7 +17,6 @@ public:
 	virtual bool operator>=(const Movie &m) const;
 	virtual bool operator==(const Movie &m) const;
 	virtual bool operator!=(const Movie& m)const;
-
 };
 
 
