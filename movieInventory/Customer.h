@@ -13,13 +13,13 @@ public:
 	Customer();
 
 	//Constructor
-	Customer(int id, string fn, string ln, int ctn);
+	Customer(string id, string fn, string ln, int ctn);
 
-	// Default Destructor
+	//Destructor
 	~Customer();
 
 	//Accessors
-	int getCustomerID()const;
+	string getCustomerID()const;
 	string getFirstName()const;
 	string getLastName()const;
 	int getCustomerTableNum()const;
@@ -29,7 +29,7 @@ public:
 	bool addTransaction(char actionType, string movieTitle);
 
 private:
-	int customerID;
+	string customerID;
 	string lastName;
 	string firstName;
 	int customerTableNum; //index for 2D vector
