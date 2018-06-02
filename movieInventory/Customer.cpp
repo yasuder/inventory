@@ -2,7 +2,7 @@
 
 Customer::Customer() {}
 
-Customer::Customer(int id, string fn, string ln, int ctn)
+Customer::Customer(string id, string fn, string ln, int ctn)
 {
 	customerID = id;
 	firstName = fn;
@@ -11,10 +11,9 @@ Customer::Customer(int id, string fn, string ln, int ctn)
 	transactions = TransactionList();
 }
 
-//Destructor
 Customer::~Customer() {}
 
-int Customer::getCustomerID() const
+string Customer::getCustomerID() const
 {
 	return customerID;
 }
