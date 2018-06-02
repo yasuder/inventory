@@ -52,18 +52,18 @@ bool Inventory::addMovie(string str) {
 		return false;
 	}
 
-		// add to BST
-		if (!movieTree.add(m)) {
-			return false;
-		}
-		// add col to rentals 2D vector
-			// rentals.add(m);
-		// add to movieList
-			// movieList.add(m);
+	// add to BST
+	if (!movieTree.add(m)) {
+		return false;
+	}
+	// add col to rentals 2D vector
+		// rentals.add(m);
+	// add to movieList
+		// movieList.add(m);
 	
-		// add to movieIndex
-		movieIndex.push_back(m->getTitle());
-		return true;
+	// add to movieIndex
+	movieIndex.push_back(m->getTitle());
+	return true;
 }
 
 bool Inventory::addCustomer(string id, string lastName, string firstName) {
