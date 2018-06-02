@@ -122,7 +122,7 @@ void Inventory::executeCommand(string str)
 
 		if (movieType == "F") {
 			//B 8000 D F You've Got Mail, 1998
-			getline(ss, title, ' ');
+			getline(ss, title, ',');
 		}
 		else if (movieType == "D") {
 			//B 1000 D D Barry Levinson, Good Morning Vietnam,
@@ -133,7 +133,7 @@ void Inventory::executeCommand(string str)
 			//B 4444 D C 2 1971 Malcolm McDowell
 			getline(ss, extra, ' ');
 			getline(ss, extra, ' ');
-			getline(ss, director, ' ');
+			getline(ss, director);
 
 			// NO TITLE IN BORROW COMMAND??
 		}
