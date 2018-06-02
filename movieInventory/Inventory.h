@@ -30,10 +30,10 @@ public:
 	//bool addMovie(char type, int stock, string director, string title, string extra);
 	bool addCustomer(string id, string lastName, string firstName);
 
-	//bool borrowMovie(string title, int customerID);
-	//bool returnMovie(string title, int customerID);
+	bool borrowMovie(string title, string customerID);
+	bool returnMovie(string title, string customerID);
 
-	//void printInventory();
+	void printInventory();
 	void printHistory(string customerID);
 	TransactionList getHistory(string customerID);
 
@@ -44,10 +44,10 @@ public:
 
 private:
 	Customer* getCustomerAtIndex(int customerIndex); // from the 2D array
-	//Movie* getMovieAtIndex(int movieIndex); // from the 2D array
+	Movie* getMovieAtIndex(int movieIndex); // from the 2D array
 
-	//HashTable<string, Movie*> movieList;
-	//BinarySearchTree movieTree;
+	HashTable<string, Movie*> movieList;
+	BinarySearchTree movieTree;
 	RentalTable rentals; // 2D vector of bool where true = renting
 	HashTable<string, Customer*> customerList;
 	vector<string> movieIndex; // index = movieIndex (in 2D array), value = movie title

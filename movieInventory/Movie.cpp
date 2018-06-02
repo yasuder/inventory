@@ -8,7 +8,6 @@ Movie::Movie() {
 	director = "";
 	year = 0;
 	stock = 0;
-	type = '';
 }
 
 Movie::Movie(char type, int stock, string director, string title, int year) {
@@ -23,17 +22,16 @@ Movie::~Movie() {
 	this->stock = 0;
 	this->director = "";
 	this->year = 0;
-	this->type = '';
 	delete this;
 
 }
-bool Movie::borrowBy(int customerID) {//if possible, borrow this Movie to the customer with given customerID
+bool Movie::borrowBy(string customerID) {//if possible, borrow this Movie to the customer with given customerID
 
 
 
 
 }
-bool Movie::returnBy(int customerID) { // if possible, return this Movie to the inventory from customer with given customerID
+bool Movie::returnBy(string customerID) { // if possible, return this Movie to the inventory from customer with given customerID
 
 
 }
