@@ -25,6 +25,8 @@ public:
 	Inventory();
 	virtual ~Inventory();
 
+	bool addMovie(string str);
+
 	//bool addMovie(char type, int stock, string director, string title, string extra);
 	bool addCustomer(string id, string lastName, string firstName);
 

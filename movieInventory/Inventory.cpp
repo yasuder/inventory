@@ -24,34 +24,47 @@ Inventory::~Inventory() {
 	customerList.clear();
 }
 
-//bool Inventory::addMovie(char type, int stock, string director, string title, string extra) {
-//	Movie *m;
-//	if (type == 'F') {
-//		m = new Comedy(stock, title, director, std::stoi(extra));
-//	}
-//	else if (type == 'D') {
-//		m = new Drama(stock, title, director, std::stoi(extra));
-//	}
-//	else if (type == 'C') {
-//
-//		m = new Classic(stock, title, director, extra);
-//	}
-//	else {
-//		return false;
-//	}
-//	// add to BST
-//	if (!movieTree.add(m)) {
-//		return false;
-//	}
-//	// add col to rentals 2D vector
-//		// rentals.add(m);
-//	// add to movieList
-//		// movieList.add(m);
-//
-//	// add to movieIndex
-//	movieIndex.push_back(m->getTitle());
-//	return true;
-//}
+bool Inventory::addMovie(string str) {
+	char type = str[0];
+	stringstream ss(str.substr(3));
+	string stock, director, title, extra;
+
+	getline(ss, stock, ',');
+	getline(ss, director, ',');
+	getline(ss, title, ',');
+	getline(ss, extra, ',');
+
+	//Movie *m;
+	switch (type) {
+	case 'F':
+		//F, 10, Nora Ephron, Sleepless in Seattle, 1993
+		//m = new Comedy(stoi(stock), title, director, stoi(extra));
+		break;
+	case 'D':
+		//D, 10, Barry Levinson, Good Morning Vietnam, 1988
+		//m = new Drama(stoi(stock), title, director, stoi(extra));
+		break;
+	case 'C':
+		//C, 10, Victor Fleming, The Wizard of Oz, Judy Garland 7 1939
+		//m = new Classic(stoi(stock), title, director, extra);
+		break;
+	default:
+		return false;
+	}
+
+	//	// add to BST
+	//	if (!movieTree.add(m)) {
+	//		return false;
+	//	}
+	//	// add col to rentals 2D vector
+	//		// rentals.add(m);
+	//	// add to movieList
+	//		// movieList.add(m);
+	//
+	//	// add to movieIndex
+	//	movieIndex.push_back(m->getTitle());
+	//	return true;
+}
 
 bool Inventory::addCustomer(string id, string lastName, string firstName) {
 	int ctn = customerList.getNumberOfEntries();
@@ -131,7 +144,7 @@ void Inventory::readMovieFile(string filename)
 	if (infile.is_open()) {
 		string line;
 		while (getline(infile, line)) {
-			
+			addMovie(line);
 			ss.clear();
 		}
 		infile.close();
