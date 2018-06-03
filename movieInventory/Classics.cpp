@@ -7,12 +7,17 @@ Classic::Classic(int stock, string title, string director, string extra) {
 	this->stock = stock;
 	this->title = title;
 	this->director = director;
-	this->year = year;
 	this->type = 'C';
 
-	//this->majorFirsNa = majorFirsNa;
-	//this->majorLastNa = majorLastNa;
-	//this->releaseMonth = releaseMonth;
+	string smonth, syear;
+	stringstream ss(extra);
+	getline(ss, this->majorFirsNa, ' ');
+	getline(ss, this->majorLastNa, ' ');
+	getline(ss, smonth, ' ');
+	getline(ss, syear, ' ');
+
+	this->releaseMonth = stoi(smonth);
+	this->year = stoi(syear);
 }
 
 //destructor

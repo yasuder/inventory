@@ -34,6 +34,11 @@ bool Inventory::addMovie(string str) {
 	getline(ss, title, ',');
 	getline(ss, extra, ',');
 
+	// trim leading whitespace
+	if (director[0] == ' ') director = director.substr(1);
+	if (title[0] == ' ') title = title.substr(1);
+	if (extra[0] == ' ') extra = extra.substr(1);
+
 	Movie *m;
 	switch (type) {
 	case 'F':
@@ -49,7 +54,7 @@ bool Inventory::addMovie(string str) {
 		m = new Classic(stoi(stock), title, director, extra);
 		break;
 	default:
-		cout << "invalid movie code" << endl;
+		cout << "invalid movie code: " << type << endl;
 		return false;
 	}
 
@@ -130,9 +135,7 @@ void Inventory::executeCommand(string str)
 			getline(ss, title, ',');
 
 			// trim leading whitespace
-			if (title[0] == ' ') {
-				title = title.substr(1);
-			}
+			if (title[0] == ' ') title = title.substr(1);
 		}
 		else if (movieType == "C") {
 			//B 4444 D C 2 1971 Malcolm McDowell

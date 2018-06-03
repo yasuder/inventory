@@ -2,6 +2,7 @@
 // Created by Goitom Hadishe on 5/15/18.
 //
 #include<string>
+#include <sstream>
 #include "Movie.h"
 
 using namespace std;
