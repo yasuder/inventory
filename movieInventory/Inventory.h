@@ -40,7 +40,7 @@ public:
 	void readCustomerFile(string filename);
 	void readMovieFile(string filename);
 	void readCommandFile(string filename);
-
+	void executeCommand(string str);
 
 private:
 	Customer* getCustomerAtIndex(int customerIndex); // from the 2D array
