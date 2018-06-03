@@ -83,9 +83,10 @@ int main() {
 	//cout << "Table size: " << table.getNumberOfEntries() << endl;
 	//cout << "Table capacity: " << table.getCapacity() << endl;
 
-	//readCustomerFile("data4customers.txt");
 	Inventory myInventory;
+	myInventory.readMovieFile("data4movies.txt");
 	myInventory.readCustomerFile("data4customers.txt");
+	myInventory.readCommandFile("data4commands.txt");
 	system("pause");
 	return 0;
 }
