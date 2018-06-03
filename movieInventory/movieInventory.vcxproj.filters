@@ -86,9 +86,6 @@
     <ClInclude Include="TransactionList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="HashEntry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RentalTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>

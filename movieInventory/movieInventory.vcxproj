@@ -135,7 +135,6 @@
     <ClInclude Include="Comedy.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Drama.h" />
-    <ClInclude Include="HashEntry.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="linkedlist.h" />
