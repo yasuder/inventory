@@ -9,7 +9,7 @@ using namespace std;
 class Comedy :public Movie {
 	friend ostream & operator<<(ostream& out, const Comedy& r);
 public:
-	Comedy(int stock, string title, string director, int year);
+	Comedy(int stock, string title, string director, int year, int mtn);
 	~Comedy();
 
 	void print();

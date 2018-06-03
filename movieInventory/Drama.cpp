@@ -3,12 +3,13 @@
 //
 
 #include "Drama.h"
-Drama::Drama(int stock, string title, string director, int year) {
+Drama::Drama(int stock, string title, string director, int year, int mtn) {
 	this->stock = stock;
 	this->title = title;
 	this->director = director;
 	this->type = 'D';
 	this->year = year;
+	this->movieTableNum = mtn;
 }
 
 Drama::~Drama() {

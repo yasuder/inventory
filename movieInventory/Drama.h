@@ -11,7 +11,7 @@ using namespace std;
 
 class Drama :public Movie {
 public:
-	Drama(int stock, string title, string director, int year);
+	Drama(int stock, string title, string director, int year, int mtn);
 	~Drama();
 
 	virtual void print();

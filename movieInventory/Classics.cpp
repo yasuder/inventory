@@ -3,11 +3,12 @@
 //
 
 #include "Classics.h"
-Classic::Classic(int stock, string title, string director, string extra) {
+Classic::Classic(int stock, string title, string director, string extra, int mtn) {
 	this->stock = stock;
 	this->title = title;
 	this->director = director;
 	this->type = 'C';
+	this->movieTableNum = mtn;
 
 	string smonth, syear;
 	stringstream ss(extra);
@@ -28,7 +29,7 @@ Classic::~Classic() {
 }
 
 int Classic::getReleaseMonth() {
-	return  releaseMonth;
+	return releaseMonth;
 }
 
 string Classic::getmajorFirstName() {

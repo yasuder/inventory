@@ -17,7 +17,7 @@ private:
 	string majorLastNa;
 
 public:
-	Classic(int stock, string title, string director, string extra); //default constructor
+	Classic(int stock, string title, string director, string extra, int mtn); //default constructor
 	~Classic();	//destructor
 
 	int getReleaseMonth();

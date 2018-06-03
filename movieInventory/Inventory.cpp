@@ -40,18 +40,19 @@ bool Inventory::addMovie(string str) {
 	if (extra[0] == ' ') extra = extra.substr(1);
 
 	Movie *m;
+	int mtn = movieList.getNumberOfEntries();
 	switch (type) {
 	case 'F':
 		//F, 10, Nora Ephron, Sleepless in Seattle, 1993
-		m = new Comedy(stoi(stock), title, director, stoi(extra));
+		m = new Comedy(stoi(stock), title, director, stoi(extra), mtn);
 		break;
 	case 'D':
 		//D, 10, Barry Levinson, Good Morning Vietnam, 1988
-		m = new Drama(stoi(stock), title, director, stoi(extra));
+		m = new Drama(stoi(stock), title, director, stoi(extra), mtn);
 		break;
 	case 'C':
 		//C, 10, Victor Fleming, The Wizard of Oz, Judy Garland 7 1939
-		m = new Classic(stoi(stock), title, director, extra);
+		m = new Classic(stoi(stock), title, director, extra, mtn);
 		break;
 	default:
 		cout << "invalid movie code: " << type << endl;
@@ -146,6 +147,7 @@ void Inventory::executeCommand(string str)
 			// NO TITLE IN BORROW COMMAND??
 			// need to somehow get the movie object based on
 			// either director or the year/month
+			title = "MISSING TITLE"; // TODO
 		}
 		else {
 			cout << "invalid video code: " << movieType << endl;
