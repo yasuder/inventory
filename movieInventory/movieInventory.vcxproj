@@ -121,8 +121,6 @@
     <ClCompile Include="Comedy.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Drama.cpp" />
-    <ClCompile Include="HashEntry.cpp" />
-    <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Movie.cpp" />
@@ -140,6 +138,7 @@
     <ClInclude Include="HashEntry.h" />
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="linkedlist.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="RentalTable.h" />
     <ClInclude Include="TransactionList.h" />

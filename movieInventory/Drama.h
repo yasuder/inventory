@@ -3,15 +3,15 @@
 //
 #include<string>
 #include "Movie.h"
+
 using namespace std;
+
 #ifndef CSS343ASS_4_DRAMA_H
 #define CSS343ASS_4_DRAMA_H
 
-
 class Drama :public Movie {
 public:
-	Drama(int stock, string title, string director, char type, int releaseYear);
-
+	Drama(int stock, string title, string director, int year);
 	~Drama();
 
 	virtual void print();
@@ -20,6 +20,5 @@ public:
 	virtual bool operator==(const Movie &m) const;
 	virtual bool operator!=(const Movie& m)const;
 };
-
 
 #endif //CSS343ASS_4_DRAMA_H
