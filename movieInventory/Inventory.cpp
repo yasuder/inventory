@@ -82,7 +82,7 @@ bool Inventory::addCustomer(string id, string lastName, string firstName) {
 bool Inventory::borrowMovie(string title, string customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getIndex()][c->getCustomerTableNum()]) {
+	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getMovieTableNum()][c->getCustomerTableNum()]) {
 		m->borrowBy(customerID);
 		return true;
 	}
@@ -92,7 +92,7 @@ bool Inventory::borrowMovie(string title, string customerID) {
 bool Inventory::returnMovie(string title, string customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && c != nullptr && rentals[m->getIndex()][c->getCustomerTableNum()]) {
+	if (m != nullptr && c != nullptr && rentals[m->getMovieTableNum()][c->getCustomerTableNum()]) {
 		m->returnBy(customerID);
 		return true;
 	}
@@ -128,6 +128,11 @@ void Inventory::executeCommand(string str)
 			//B 1000 D D Barry Levinson, Good Morning Vietnam,
 			getline(ss, extra, ',');
 			getline(ss, title, ',');
+
+			// trim leading whitespace
+			if (title[0] == ' ') {
+				title = title.substr(1);
+			}
 		}
 		else if (movieType == "C") {
 			//B 4444 D C 2 1971 Malcolm McDowell
@@ -136,6 +141,8 @@ void Inventory::executeCommand(string str)
 			getline(ss, director);
 
 			// NO TITLE IN BORROW COMMAND??
+			// need to somehow get the movie object based on
+			// either director or the year/month
 		}
 		else {
 			cout << "invalid video code: " << movieType << endl;
@@ -144,11 +151,11 @@ void Inventory::executeCommand(string str)
 
 		if (customerList.containsKey(customerId)) {
 			if (type == "B") {
-				cout << "borrow" << title << customerId << endl;
+				cout << "borrow " << title << " " << customerId << endl; // TODO: Remove after test
 				borrowMovie(title, customerId);
 			}
 			else {
-				cout << "return" << title << customerId << endl;
+				cout << "return " << title << " " << customerId << endl; // TODO: Remove after test
 				returnMovie(title, customerId);
 			}
 		}
@@ -162,7 +169,7 @@ void Inventory::executeCommand(string str)
 		break;
 	case 'H':
 		getline(ss, customerId, ' ');
-		cout << customerId << endl;
+		cout << "history " << customerId << endl; // TODO: Remove after test
 		customerList.getValue(customerId)->getTransactions().printHistory();
 		break;
 	default:
