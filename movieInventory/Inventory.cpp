@@ -82,7 +82,7 @@ bool Inventory::addCustomer(string id, string lastName, string firstName) {
 bool Inventory::borrowMovie(string title, string customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getMovieTableNum()][c->getCustomerTableNum()]) {
+	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getIndex()][c->getCustomerTableNum()]) {
 		m->borrowBy(customerID);
 		return true;
 	}
@@ -92,7 +92,7 @@ bool Inventory::borrowMovie(string title, string customerID) {
 bool Inventory::returnMovie(string title, string customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && c != nullptr && rentals[m->getMovieTableNum()][c->getCustomerTableNum()]) {
+	if (m != nullptr && c != nullptr && rentals[m->getIndex()][c->getCustomerTableNum()]) {
 		m->returnBy(customerID);
 		return true;
 	}
