@@ -15,10 +15,10 @@ public:
 	~Drama();
 
 	virtual void print();
-	virtual bool operator>(const Movie &m) const;
-	virtual bool operator>=(const Movie &m) const;
-	virtual bool operator==(const Movie &m) const;
-	virtual bool operator!=(const Movie& m)const;
+	virtual bool operator>(Drama &m);
+	virtual bool operator<(Drama &m);
+	virtual bool operator==(Drama &m);
+	virtual bool operator!=(Drama &m);
 };
 
 #endif //CSS343ASS_4_DRAMA_H

@@ -20,23 +20,24 @@ void Drama::print() {
 	cout << "D" << stock << ", " << director << ", " << title << ", " << year << endl;
 }
 
-bool Drama::operator>(const Movie &m) const {
-	const  Drama& d = static_cast<const Drama&>(m);
-	return (this->type > d.type && this->title > d.title && this->director > d.director && this->year > d.year);
+bool Drama::operator>(Drama &m) {
+	if (director != m.director) {
+		return director > m.director;
+	}
+	else {
+		return title > m.title;
+	}
 }
 
-bool Drama::operator>=(const Movie &m) const {
-	const  Drama& d = static_cast<const Drama&>(m);
-	return (this->type >= d.type && this->title >= d.title && this->director >= d.director && this->year >= d.year);
+bool Drama::operator<(Drama &m) {
+	return !(this->operator>(m));
 }
 
-bool Drama::operator==(const Movie &m) const {
-	const  Drama& d = static_cast<const Drama&>(m);
-	return (this->type == d.type && this->title == d.title && this->director == d.director && this->year == d.year);
+bool Drama::operator==(Drama &m) {
+	return (title == m.title && director == m.director && year == m.year);
 }
 
-bool Drama::operator!=(const Movie& m)const {
-	const  Drama& d = static_cast<const Drama&>(m);
-	return (this->type != d.type || this->title != d.title || this->director != d.director || this->year != d.year);
+bool Drama::operator!=(Drama &m) {
+	return !(this->operator==(m));
 }
 

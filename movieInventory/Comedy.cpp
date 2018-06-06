@@ -19,22 +19,23 @@ void Comedy::print() {
 	cout << "F" << ", " << stock << ", " << director << ", " << title << ", " << year << endl;
 }
 
-bool Comedy::operator>(const Movie &m) const {
-	const Comedy& d = static_cast<const Comedy&>(m);
-	return (this->type > d.type && this->title > d.title && this->director > d.director && this->year > d.year);
+bool Comedy::operator>(Comedy &m) {
+	if (title != m.title) {
+		return title > m.title;
+	}
+	else {
+		return year > m.year;
+	}
 }
 
-bool Comedy::operator>=(const Movie &m) const {
-	const Comedy& d = static_cast<const Comedy&>(m);
-	return (this->type >= d.type && this->title >= d.title && this->director >= d.director && this->year >= d.year);
+bool Comedy::operator<(Comedy &m) {
+	return !(this->operator>(m));
 }
 
-bool Comedy::operator==(const Movie &m) const {
-	const Comedy& d = static_cast<const Comedy&>(m);
-	return (this->type == d.type && this->title == d.title && this->director == d.director && this->year == d.year);
+bool Comedy::operator==(Comedy &m) {
+	return (title == m.title && director == m.director && year == m.year);
 }
 
-bool Comedy::operator!=(const Movie& m)const {
-	const Comedy& d = static_cast<const Comedy&>(m);
-	return (this->type != d.type || this->title != d.title || this->director != d.director || this->year != d.year);
+bool Comedy::operator!=(Comedy &m) {
+	return !(this->operator==(m));
 }

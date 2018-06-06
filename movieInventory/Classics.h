@@ -24,6 +24,14 @@ public:
 	string getmajorFirstName();
 	string getmajorLastName();
 
+	bool operator<(Classic & m);
+
+	bool operator>(Classic & m);
+
+	bool operator==(Classic & m);
+
+	bool operator!=(Classic & m);
+
 };
 
 #endif //CSS343ASS_4_CLASSICS_H

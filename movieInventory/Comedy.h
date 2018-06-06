@@ -13,10 +13,10 @@ public:
 	~Comedy();
 
 	void print();
-	virtual bool operator>(const Movie &m) const;
-	virtual bool operator>=(const Movie &m) const;
-	virtual bool operator==(const Movie &m) const;
-	virtual bool operator!=(const Movie& m)const;
+	virtual bool operator>(Comedy &m);
+	virtual bool operator<(Comedy &m);
+	virtual bool operator==(Comedy &m);
+	virtual bool operator!=(Comedy &m);
 };
 
 #endif //CSS343ASS_4_COMEDY_H

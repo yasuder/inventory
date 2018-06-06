@@ -47,26 +47,30 @@ string Classic::getmajorLastName() {
 //		majorFirsNa << " " << majorLastNa << " " << releaseMonth << " " << year << endl;
 //}
 //
-//bool Classic::operator<(Movie &m) const {
-//	//const Classic& C = static_cast<const Classic&>(m);
-//	return(this->type > m.getType() && this->year > C.year && this->releaseMonth > C.releaseMonth &&
-//		this->majorFirsNa > C.majorFirsNa && this->majorLastNa > C.majorLastNa && this->director > C.director && this->title > C.title);
-//}
-//
-//bool Classic::operator>(const Movie &m) const {
-//	const Classic& C = static_cast<const Classic&>(m);
-//	return(this->type >= C.type && this->year >= C.year && this->releaseMonth >= C.releaseMonth &&
-//		this->majorFirsNa >= C.majorFirsNa && this->majorLastNa >= C.majorLastNa  && this->director >= C.director && this->title >= C.title);
-//}
-//
-//bool Classic::operator==(const Movie &m) const {
-//	const Classic& C = static_cast<const Classic&>(m);
-//	return(this->type == C.type && this->year == C.year && this->releaseMonth == C.releaseMonth &&
-//		this->majorFirsNa == C.majorFirsNa && this->majorLastNa == C.majorLastNa  && this->director == C.director && this->title == C.title);
-//}
-//
-//bool Classic::operator!=(const Movie& m)const {
-//	const Classic& C = static_cast<const Classic&>(m);
-//	return (this->type != C.type || this->year != C.year || this->releaseMonth != C.releaseMonth ||
-//		this->majorFirsNa != C.majorFirsNa || this->majorLastNa != C.majorLastNa || this->director != C.director || this->title != C.title);
-//}
+bool Classic::operator<(Classic &m) {
+	if (year != m.year) {
+		return year < m.year;
+	}
+	else if (releaseMonth != m.releaseMonth) {
+		return getReleaseMonth() < m.getReleaseMonth();
+	}
+	else if (majorLastNa != m.majorLastNa) {
+		return majorLastNa < m.majorLastNa;
+	}
+	else {
+		return majorFirsNa < m.majorFirsNa;
+	}
+}
+
+bool Classic::operator>(Classic &m) {
+	return !(this->operator<(m));
+}
+
+bool Classic::operator==(Classic &m) {
+	return(year == m.year && releaseMonth == m.releaseMonth &&
+		majorFirsNa == m.majorFirsNa && majorLastNa == m.majorLastNa  && director == m.director && title == m.title);
+}
+
+bool Classic::operator!=(Classic &m) {
+	return !(this->operator==(m));
+}
