@@ -40,10 +40,10 @@ public:
 	vector<Customer*> getRenters();
 
 	virtual void printRental() {};
-	virtual bool operator >(const Movie& m)const { return false; }
-	virtual bool operator >=(const Movie& m)const { return false; }
-	virtual bool operator ==(const Movie& m)const { return false; }
-	virtual bool operator !=(const Movie& m)const { return false; }
+	virtual bool operator>(Movie& m)const { return false; }
+	virtual bool operator<(Movie& m)const { return false; }
+	virtual bool operator==(Movie& m)const { return false; }
+	virtual bool operator!=(Movie& m)const { return false; }
 };
 
 #endif //CSS343ASS_4_MOVIE_H

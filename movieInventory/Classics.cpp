@@ -47,13 +47,13 @@ void Classic::print() {
 		majorFirsNa << " " << majorLastNa << " " << releaseMonth << " " << year << endl;
 }
 
-bool Classic::operator>(const Movie &m) const {
-	const Classic& C = static_cast<const Classic&>(m);
-	return(this->type > C.type && this->year > C.year && this->releaseMonth > C.releaseMonth &&
+bool Classic::operator<(Movie &m) const {
+	//const Classic& C = static_cast<const Classic&>(m);
+	return(this->type > m.getType() && this->year > C.year && this->releaseMonth > C.releaseMonth &&
 		this->majorFirsNa > C.majorFirsNa && this->majorLastNa > C.majorLastNa && this->director > C.director && this->title > C.title);
 }
 
-bool Classic::operator>=(const Movie &m) const {
+bool Classic::operator>(const Movie &m) const {
 	const Classic& C = static_cast<const Classic&>(m);
 	return(this->type >= C.type && this->year >= C.year && this->releaseMonth >= C.releaseMonth &&
 		this->majorFirsNa >= C.majorFirsNa && this->majorLastNa >= C.majorLastNa  && this->director >= C.director && this->title >= C.title);

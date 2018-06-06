@@ -24,11 +24,6 @@ public:
 	string getmajorFirstName();
 	string getmajorLastName();
 
-	virtual void print();
-	virtual bool operator>(const Movie &m) const;
-	virtual bool operator>=(const Movie &m) const;
-	virtual bool operator==(const Movie &m) const;
-	virtual bool operator!=(const Movie& m)const;
 };
 
 #endif //CSS343ASS_4_CLASSICS_H
