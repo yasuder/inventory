@@ -9,17 +9,31 @@ Movie::~Movie() {
 	this->stock = 0;
 	this->director = "";
 	this->year = 0;
+	this->customerList.clear();
 	delete this;
 }
 
-//bool Movie::borrowBy(string customerID) { //if possible, borrow this Movie to the customer with given customerID
-//}
-//
-//bool Movie::returnBy(string customerID) { // if possible, return this Movie to the inventory from customer with given customerID
-//}
-//
-//vector<Customer*> Movie::getRenters() {
-//}
+bool Movie::borrowBy(string customerID) {
+	if (customerList.getValue(customerID) != NULL && this->stock > 0) {
+		customerList.add(customerID, true);
+		this->stock--;
+		return true;
+	}
+	return false;
+}
+
+bool Movie::returnBy(string customerID) {
+	if (customerList.getValue(customerID) != NULL) {
+		customerList.remove(customerID);
+		this->stock++;
+		return true;
+	}
+	return false;
+}
+
+vector<string> Movie::getRenters() {
+	return customerList.getKeys();
+}
 
 int Movie::compareMovie(const Movie& m)const {
 	if ((int)MovieTypes(this->type) > (int)MovieTypes(m.type)) {

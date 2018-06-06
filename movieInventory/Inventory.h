@@ -11,7 +11,6 @@
 #include "Comedy.h"
 #include "Drama.h"
 #include "Classics.h"
-#include "RentalTable.h"
 #include "TransactionList.h"
 
 using namespace std;
@@ -27,7 +26,6 @@ public:
 
 	bool addMovie(string str);
 
-	//bool addMovie(char type, int stock, string director, string title, string extra);
 	bool addCustomer(string id, string lastName, string firstName);
 
 	bool borrowMovie(string title, string customerID);
@@ -43,15 +41,9 @@ public:
 	void executeCommand(string str);
 
 private:
-	Customer* getCustomerAtIndex(int customerIndex); // from the 2D array
-	Movie* getMovieAtIndex(int movieIndex); // from the 2D array
-
 	HashTable<string, Movie*> movieList;
 	BinarySearchTree movieTree;
-	RentalTable rentals; // 2D vector of bool where true = renting
 	HashTable<string, Customer*> customerList;
-	vector<string> movieIndex; // index = movieIndex (in 2D array), value = movie title
-	vector<int> customerIndex; // index = customerIndex (in 2D array), value = customerID
 };
 
 

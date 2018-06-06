@@ -1,8 +1,10 @@
 #pragma once
 #include <string>
+#include <vector>
 #include "linkedlist.h"
 #include "TransactionList.h"
 #include "TransactionNode.h"
+#include "HashTable.h"
 
 using namespace std;
 
@@ -23,10 +25,13 @@ public:
 	string getFirstName()const;
 	string getLastName()const;
 	int getCustomerTableNum()const;
+	vector<string> getBorrowedMovies() const;
 
 	TransactionList getTransactions()const;
 
 	bool addTransaction(char actionType, string movieTitle);
+	bool borrowMovie(string movieID);
+	bool returnMovie(string movieID);
 
 private:
 	string customerID;
@@ -34,4 +39,5 @@ private:
 	string firstName;
 	int customerTableNum; //index for 2D vector
 	TransactionList transactions;
+	HashTable<string, bool> movieList;
 };

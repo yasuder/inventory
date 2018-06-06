@@ -11,16 +11,12 @@
 Inventory::Inventory() {
 	movieList = HashTable<string, Movie*>();
 	movieTree = BinarySearchTree();
-	rentals = RentalTable();
 	customerList = HashTable<string, Customer*>();
-	movieIndex = vector<string>();
-	customerIndex = vector<int>();
 }
 
 Inventory::~Inventory() {
 	movieList.clear();
 	movieTree.clear();
-	//rentals.clear();
 	customerList.clear();
 }
 
@@ -63,13 +59,7 @@ bool Inventory::addMovie(string str) {
 	if (!movieTree.add(m)) {
 		return false;
 	}
-	// add col to rentals 2D vector
-		// rentals.add(m);
-	// add to movieList
-		// movieList.add(m);
-	
-	// add to movieIndex
-	movieIndex.push_back(m->getTitle());
+
 	return true;
 }
 
@@ -78,36 +68,35 @@ bool Inventory::addCustomer(string id, string lastName, string firstName) {
 	Customer *temp = new Customer(id, firstName, lastName, ctn);
 	customerList.add(temp->getCustomerID(), temp);
 
-	//customerIndex.push_back(temp->getCustomerID());
-
-	// add row to rentals 2D vector
-		// rentals.add(temp);
 	return true; // CHANGE THIS
 }
 
 bool Inventory::borrowMovie(string title, string customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	//if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getMovieTableNum()][c->getCustomerTableNum()]) {
-	//	m->borrowBy(customerID);
-	//	return true;
-	//}
+	if (m != nullptr && c != nullptr) {
+		m->borrowBy(customerID);
+		c->borrowMovie(title);
+		return true;
+	}
 	return false;
 }
 
 bool Inventory::returnMovie(string title, string customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	//if (m != nullptr && c != nullptr && rentals[m->getMovieTableNum()][c->getCustomerTableNum()]) {
-	//	m->returnBy(customerID);
-	//	return true;
-	//}
+	if (m != nullptr && c != nullptr) {
+		m->returnBy(customerID);
+		c->returnMovie(title);
+		return true;
+	}
 	return false;
 }
 
 void Inventory::executeCommand(string str)
 {
 	stringstream ss(str);
+	Customer *c;
 	string type, customerId, mediaType, movieType, director, title, extra;
 	getline(ss, type, ' ');
 	
@@ -153,8 +142,9 @@ void Inventory::executeCommand(string str)
 			cout << "invalid video code: " << movieType << endl;
 			return;
 		}
-
-		if (customerList.containsKey(customerId)) {
+		c = customerList.getValue(customerId);
+		if (c != nullptr) {
+			c->addTransaction(action, title);
 			if (type == "B") {
 				cout << "borrow " << title << " " << customerId << endl; // TODO: Remove after test
 				borrowMovie(title, customerId);
@@ -248,14 +238,4 @@ void Inventory::readCommandFile(string filename)
 	else {
 		cout << "Error opening file " << endl;
 	}
-}
-
-Customer * Inventory::getCustomerAtIndex(int customerIndex) {
-	int id = this->customerIndex.at(customerIndex);
-	return customerList.getValue(to_string(id));
-}
-
-Movie * Inventory::getMovieAtIndex(int movieIndex) {
-	string title = this->movieIndex.at(movieIndex);
-	return movieList.getValue(title); // are we hashing by title or by some movie ID?
 }

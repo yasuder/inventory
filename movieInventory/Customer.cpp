@@ -41,3 +41,23 @@ TransactionList Customer::getTransactions() const
 bool Customer::addTransaction(char actionType, string movieTitle) {
 	return transactions.add(actionType, movieTitle);
 }
+
+bool Customer::borrowMovie(string movieID) {
+	if (movieList.getValue(movieID) != NULL) {
+		movieList.add(movieID, true);
+		return true;
+	}
+	return false;
+}
+
+bool Customer::returnMovie(string movieID) {
+	if (movieList.getValue(movieID) != NULL) {
+		movieList.remove(movieID);
+		return true;
+	}
+	return false;
+}
+
+vector<string> Customer::getBorrowedMovies() const {
+	return movieList.getKeys();
+}

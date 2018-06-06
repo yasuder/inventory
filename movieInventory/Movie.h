@@ -5,6 +5,7 @@
 #include <vector>
 #include <iostream>
 #include "Customer.h"
+#include "HashTable.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ protected:
 	int stock;
 	char type;
 	int movieTableNum;
+	HashTable<string, bool> customerList;
 
 	enum MovieTypes { F, D, C };
 
@@ -34,16 +36,15 @@ public:
 	string getTitle();
 	string getDirector();
 	int getReleaseYear();
-	int getMovieTableNum();
 
 	int compareMovie(const Movie& m)const;
-	vector<Customer*> getRenters();
+	vector<string> getRenters();
 
 	virtual void printRental() {};
-	virtual bool operator>(Movie& m)const { return false; }
-	virtual bool operator<(Movie& m)const { return false; }
-	virtual bool operator==(Movie& m)const { return false; }
-	virtual bool operator!=(Movie& m)const { return false; }
+	virtual bool operator >(const Movie& m)const { return false; }
+	virtual bool operator >=(const Movie& m)const { return false; }
+	virtual bool operator ==(const Movie& m)const { return false; }
+	virtual bool operator !=(const Movie& m)const { return false; }
 };
 
 #endif //CSS343ASS_4_MOVIE_H

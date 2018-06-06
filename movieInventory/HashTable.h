@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 using namespace std;
 
 template<class KeyType, class ValueType>
@@ -67,6 +69,8 @@ public:
 
 	//Clears the hashTable so that it contains no keys
 	void clear();
+
+	vector<string> getKeys()const;
 
 private:
 	int capacity = 1;
@@ -228,6 +232,23 @@ inline void HashTable<KeyType, ValueType>::clear()
 			remove(prev->getKey());
 		}
 	}
+}
+
+template<class KeyType, class ValueType>
+inline vector<string> HashTable<KeyType, ValueType>::getKeys() const
+{
+	vector<string> keys;
+
+	for (int i = 0; i < capacity; i++) {
+		HashEntry<KeyType, ValueType>* current = table[i];
+
+		while (current != nullptr) {
+			keys.push_back(current->getKey());
+			current = current->next;
+		}
+	}
+
+	return keys;
 }
 
 template<class KeyType, class ValueType>
