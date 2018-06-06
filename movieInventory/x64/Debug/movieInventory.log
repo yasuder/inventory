@@ -1,0 +1,55 @@
+﻿  TransactionNode.cpp
+  TransactionList.cpp
+  Movie.cpp
+c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(258): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(256): note: while compiling class template member function 'int HashTable<std::string,bool>::getHash(const KeyType &) const'
+          with
+          [
+              KeyType=std::string
+          ]
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(115): note: see reference to function template instantiation 'int HashTable<std::string,bool>::getHash(const KeyType &) const' being compiled
+          with
+          [
+              KeyType=std::string
+          ]
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(86): note: while compiling class template member function 'HashTable<std::string,bool>::HashTable(void)'
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\movie.cpp(6): note: see reference to function template instantiation 'HashTable<std::string,bool>::HashTable(void)' being compiled
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\customer.h(42): note: see reference to class template instantiation 'HashTable<std::string,bool>' being compiled
+  main.cpp
+  Inventory.cpp
+c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(258): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(256): note: while compiling class template member function 'int HashTable<std::string,Movie *>::getHash(const KeyType &) const'
+          with
+          [
+              KeyType=std::string
+          ]
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(162): note: see reference to function template instantiation 'int HashTable<std::string,Movie *>::getHash(const KeyType &) const' being compiled
+          with
+          [
+              KeyType=std::string
+          ]
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(86): note: while compiling class template member function 'HashTable<std::string,Movie *>::HashTable(void)'
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\inventory.cpp(12): note: see reference to function template instantiation 'HashTable<std::string,Movie *>::HashTable(void)' being compiled
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\inventory.h(44): note: see reference to class template instantiation 'HashTable<std::string,Movie *>' being compiled
+  Drama.cpp
+  Customer.cpp
+c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(258): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(256): note: while compiling class template member function 'int HashTable<std::string,bool>::getHash(const KeyType &) const'
+          with
+          [
+              KeyType=std::string
+          ]
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(115): note: see reference to function template instantiation 'int HashTable<std::string,bool>::getHash(const KeyType &) const' being compiled
+          with
+          [
+              KeyType=std::string
+          ]
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\hashtable.h(86): note: while compiling class template member function 'HashTable<std::string,bool>::HashTable(void)'
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\customer.cpp(3): note: see reference to function template instantiation 'HashTable<std::string,bool>::HashTable(void)' being compiled
+  c:\users\erika\dropbox\css 343\hw\hw 4\inventory\movieinventory\customer.h(42): note: see reference to class template instantiation 'HashTable<std::string,bool>' being compiled
+  Comedy.cpp
+  Classics.cpp
+  BinarySearchTree.cpp
+  BinaryNode.cpp
+  Generating Code...
+  movieInventory.vcxproj -> C:\Users\Erika\Dropbox\CSS 343\HW\HW 4\inventory\movieInventory\x64\Debug\movieInventory.exe

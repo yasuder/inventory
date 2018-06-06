@@ -48,9 +48,6 @@
     <ClCompile Include="TransactionList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RentalTable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BinarySearchTree.h">
@@ -84,9 +81,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TransactionList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RentalTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="linkedlist.h">

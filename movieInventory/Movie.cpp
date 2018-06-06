@@ -66,19 +66,3 @@ int Movie::getReleaseYear() {
 char Movie::getType() {
 	return this->type;
 }
-
-bool Movie::operator>(Movie& m) {
-	return stock > m.stock;
-}
-
-bool Movie::operator<(Movie& m) {
-	return !(this->operator>(m));
-}
-
-bool Movie::operator==(Movie& m) {
-	return stock == m.stock;
-}
-
-bool Movie::operator!=(Movie& m) {
-	return !(this->operator==(m));
-}

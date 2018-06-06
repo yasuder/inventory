@@ -1,4 +1,4 @@
-#include "customer.h"
+#include "Customer.h"
 
 Customer::Customer() {}
 

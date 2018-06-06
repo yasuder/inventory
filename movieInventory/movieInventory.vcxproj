@@ -124,7 +124,6 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Movie.cpp" />
-    <ClCompile Include="RentalTable.cpp" />
     <ClCompile Include="TransactionList.cpp" />
     <ClCompile Include="TransactionNode.cpp" />
   </ItemGroup>
@@ -139,7 +138,6 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="linkedlist.h" />
     <ClInclude Include="Movie.h" />
-    <ClInclude Include="RentalTable.h" />
     <ClInclude Include="TransactionList.h" />
     <ClInclude Include="TransactionNode.h" />
   </ItemGroup>
