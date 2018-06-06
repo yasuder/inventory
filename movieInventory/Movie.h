@@ -41,10 +41,10 @@ public:
 	vector<string> getRenters();
 
 	virtual void printRental() {};
-	virtual bool operator >(const Movie& m)const { return false; }
-	virtual bool operator >=(const Movie& m)const { return false; }
-	virtual bool operator ==(const Movie& m)const { return false; }
-	virtual bool operator !=(const Movie& m)const { return false; }
+	virtual bool operator >(Movie& m);
+	virtual bool operator <(Movie& m);
+	virtual bool operator ==(Movie& m);
+	virtual bool operator !=(Movie& m);
 };
 
 #endif //CSS343ASS_4_MOVIE_H
