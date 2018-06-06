@@ -11,6 +11,7 @@ public:
 	bool addCustomer();
 	bool borrowMovie(string title, int customerID); // add a row to the 2D vector
 	bool returnMovie(string title, int customerID); // add a column to the 2D vector
+	void clear();
 
 	vector<int> customersRentingMovie(string title); // to know who's renting a specified movie
 	vector<string> moviesRentedByCustomer(int customerID); // to know what movies a specified customer is renting

@@ -20,7 +20,7 @@ Inventory::Inventory() {
 Inventory::~Inventory() {
 	movieList.clear();
 	movieTree.clear();
-	rentals.clear();
+	//rentals.clear();
 	customerList.clear();
 }
 
@@ -34,22 +34,28 @@ bool Inventory::addMovie(string str) {
 	getline(ss, title, ',');
 	getline(ss, extra, ',');
 
+	// trim leading whitespace
+	if (director[0] == ' ') director = director.substr(1);
+	if (title[0] == ' ') title = title.substr(1);
+	if (extra[0] == ' ') extra = extra.substr(1);
+
 	Movie *m;
+	int mtn = movieList.getNumberOfEntries();
 	switch (type) {
 	case 'F':
 		//F, 10, Nora Ephron, Sleepless in Seattle, 1993
-		m = new Comedy(stoi(stock), title, director, stoi(extra));
+		m = new Comedy(stoi(stock), title, director, stoi(extra), mtn);
 		break;
 	case 'D':
 		//D, 10, Barry Levinson, Good Morning Vietnam, 1988
-		m = new Drama(stoi(stock), title, director, stoi(extra));
+		m = new Drama(stoi(stock), title, director, stoi(extra), mtn);
 		break;
 	case 'C':
 		//C, 10, Victor Fleming, The Wizard of Oz, Judy Garland 7 1939
-		m = new Classic(stoi(stock), title, director, extra);
+		m = new Classic(stoi(stock), title, director, extra, mtn);
 		break;
 	default:
-		cout << "invalid movie code" << endl;
+		cout << "invalid movie code: " << type << endl;
 		return false;
 	}
 
@@ -82,20 +88,20 @@ bool Inventory::addCustomer(string id, string lastName, string firstName) {
 bool Inventory::borrowMovie(string title, string customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getIndex()][c->getCustomerTableNum()]) {
-		m->borrowBy(customerID);
-		return true;
-	}
+	//if (m != nullptr && m->getStock() > 0 && c != nullptr && !rentals[m->getMovieTableNum()][c->getCustomerTableNum()]) {
+	//	m->borrowBy(customerID);
+	//	return true;
+	//}
 	return false;
 }
 
 bool Inventory::returnMovie(string title, string customerID) {
 	Movie *m = movieList.getValue(title);
 	Customer *c = customerList.getValue(customerID);
-	if (m != nullptr && c != nullptr && rentals[m->getIndex()][c->getCustomerTableNum()]) {
-		m->returnBy(customerID);
-		return true;
-	}
+	//if (m != nullptr && c != nullptr && rentals[m->getMovieTableNum()][c->getCustomerTableNum()]) {
+	//	m->returnBy(customerID);
+	//	return true;
+	//}
 	return false;
 }
 
@@ -130,9 +136,7 @@ void Inventory::executeCommand(string str)
 			getline(ss, title, ',');
 
 			// trim leading whitespace
-			if (title[0] == ' ') {
-				title = title.substr(1);
-			}
+			if (title[0] == ' ') title = title.substr(1);
 		}
 		else if (movieType == "C") {
 			//B 4444 D C 2 1971 Malcolm McDowell
@@ -143,6 +147,7 @@ void Inventory::executeCommand(string str)
 			// NO TITLE IN BORROW COMMAND??
 			// need to somehow get the movie object based on
 			// either director or the year/month
+			title = "MISSING TITLE"; // TODO
 		}
 		else {
 			cout << "invalid video code: " << movieType << endl;

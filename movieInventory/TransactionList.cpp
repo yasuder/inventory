@@ -31,4 +31,5 @@ bool TransactionList::add(char actionType, string movieTitle) {
 	TransactionNode *curr = new TransactionNode(actionType, movieTitle);
 	curr->prev = front;
 	front = curr;
+	return true;
 }

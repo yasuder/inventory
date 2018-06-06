@@ -1,17 +1,15 @@
 //
 // Created by Goitom Hadishe on 5/15/18.
 //
-#include<string>
+#include <string>
 #include <vector>
-#include "Customer.h"
 #include <iostream>
+#include "Customer.h"
+
 using namespace std;
-#define COMMA_SPACE ",   "
-#define WHITE_SPACE "  "
-#define CURRENT_NUM_TYPES 3
+
 #ifndef CSS343ASS_4_MOVIE_H
 #define CSS343ASS_4_MOVIE_H
-
 
 class Movie {
 protected:
@@ -20,29 +18,32 @@ protected:
 	int year;
 	int stock;
 	char type;
+	int movieTableNum;
+
 	enum MovieTypes { F, D, C };
 
 public:
 	Movie();
-	Movie(char type, int stock, string director, string title, int year);
 	~Movie();
+
 	bool borrowBy(string customerID);// if possible, borrow this Movie to the customer with given customerID
 	bool returnBy(string customerID); // if possible, return this Movie to the inventory from customer with given customerID
 
-
+	char getType();
 	int getStock();
 	string getTitle();
 	string getDirector();
-	int getRealseYear();
-	char getType();
-	int compairMove(const Movie& m)const;
-	virtual void printRental() {};
-	vector<Customer*> getRenters();
-	virtual bool operator >(const Movie& m)const { return false; }
-	virtual bool operator >=(const Movie& m)const { return false; }
-	virtual bool operator ==(const Movie& m)const { return false; }
-	virtual bool operator!=(const Movie& m)const { return false; }
+	int getReleaseYear();
+	int getMovieTableNum();
 
+	int compareMovie(const Movie& m)const;
+	vector<Customer*> getRenters();
+
+	virtual void printRental() {};
+	virtual bool operator>(Movie& m)const { return false; }
+	virtual bool operator<(Movie& m)const { return false; }
+	virtual bool operator==(Movie& m)const { return false; }
+	virtual bool operator!=(Movie& m)const { return false; }
 };
 
 #endif //CSS343ASS_4_MOVIE_H
