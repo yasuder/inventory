@@ -9,6 +9,7 @@ Classic::Classic(int stock, string title, string director, string extra, int mtn
 	this->director = director;
 	this->type = 'C';
 	this->movieTableNum = mtn;
+	this->customerList = HashTable<string, bool>();
 
 	string smonth, syear;
 	stringstream ss(extra);
@@ -41,12 +42,12 @@ string Classic::getmajorLastName() {
 }
 
 //returns information about the classic as formatted output.
-// this includes stock counts
-//void Classic::print() {
-//	cout << "C" << ", " << stock << ", " << director << ", " << title << " " <<
-//		majorFirsNa << " " << majorLastNa << " " << releaseMonth << " " << year << endl;
-//}
-//
+//this includes stock counts
+void Classic::print() {
+	cout << "C" << ", " << stock << ", " << director << ", " << title << " " <<
+		majorFirsNa << " " << majorLastNa << " " << releaseMonth << " " << year << endl;
+}
+
 bool Classic::operator<(Classic &m) {
 	if (year != m.year) {
 		return year < m.year;

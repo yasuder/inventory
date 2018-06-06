@@ -42,7 +42,9 @@ public:
 
 private:
 	HashTable<string, Movie*> movieList;
-	BinarySearchTree movieTree;
+	BinarySearchTree comedyTree;
+	BinarySearchTree dramaTree;
+	BinarySearchTree classicTree;
 	HashTable<string, Customer*> customerList;
 };
 

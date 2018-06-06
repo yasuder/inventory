@@ -4,6 +4,7 @@
 #include<string>
 #include <sstream>
 #include "Movie.h"
+#include "BinarySearchTree.h"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ private:
 	int releaseMonth;
 	string majorFirsNa;
 	string majorLastNa;
+	BinarySearchTree classicMovies;
 
 public:
 	Classic(int stock, string title, string director, string extra, int mtn); //default constructor
@@ -24,12 +26,10 @@ public:
 	string getmajorFirstName();
 	string getmajorLastName();
 
+	void print();
 	bool operator<(Classic & m);
-
 	bool operator>(Classic & m);
-
 	bool operator==(Classic & m);
-
 	bool operator!=(Classic & m);
 
 };

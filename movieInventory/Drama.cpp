@@ -10,6 +10,7 @@ Drama::Drama(int stock, string title, string director, int year, int mtn) {
 	this->type = 'D';
 	this->year = year;
 	this->movieTableNum = mtn;
+	this->customerList = HashTable<string, bool>();
 }
 
 Drama::~Drama() {

@@ -9,6 +9,7 @@ Comedy::Comedy(int stock, string title, string director, int year, int mtn) {
 	this->title = title;
 	this->year = year;
 	this->movieTableNum = mtn;
+	this->customerList = HashTable<string, bool>();
 }
 
 Comedy::~Comedy() {

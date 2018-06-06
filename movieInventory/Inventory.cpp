@@ -11,13 +11,17 @@
 
 Inventory::Inventory() {
 	movieList = HashTable<string, Movie*>();
-	movieTree = BinarySearchTree();
+	comedyTree = BinarySearchTree();
+	classicTree = BinarySearchTree();
+	dramaTree = BinarySearchTree();
 	customerList = HashTable<string, Customer*>();
 }
 
 Inventory::~Inventory() {
 	movieList.clear();
-	movieTree.clear();
+	comedyTree.clear();
+	classicTree.clear();
+	dramaTree.clear();
 	customerList.clear();
 }
 
@@ -42,26 +46,19 @@ bool Inventory::addMovie(string str) {
 	case 'F':
 		//F, 10, Nora Ephron, Sleepless in Seattle, 1993
 		m = new Comedy(stoi(stock), title, director, stoi(extra), mtn);
-		break;
+		return comedyTree.add(m);
 	case 'D':
 		//D, 10, Barry Levinson, Good Morning Vietnam, 1988
 		m = new Drama(stoi(stock), title, director, stoi(extra), mtn);
-		break;
+		return dramaTree.add(m);
 	case 'C':
 		//C, 10, Victor Fleming, The Wizard of Oz, Judy Garland 7 1939
 		m = new Classic(stoi(stock), title, director, extra, mtn);
-		break;
+		return classicTree.add(m);
 	default:
 		cout << "invalid movie code: " << type << endl;
 		return false;
 	}
-
-	// add to BST
-	if (!movieTree.add(m)) {
-		return false;
-	}
-
-	return true;
 }
 
 bool Inventory::addCustomer(string id, string lastName, string firstName) {
