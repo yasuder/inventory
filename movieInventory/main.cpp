@@ -124,8 +124,5 @@ int main() {
 	myInventory.readCommandFile("data4commands.txt");
 	cout << endl;
 
-	
-
-	system("pause");
 	return 0;
 }

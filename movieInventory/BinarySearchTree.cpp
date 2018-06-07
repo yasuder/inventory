@@ -56,6 +56,9 @@ BinaryNode* BinarySearchTree::addHelper(Movie *m, BinaryNode* node) {
 	else if (m > node->data) {
 		node->right = addHelper(m, node->right);
 	}
+	//else if (m == node->data) {
+	//	node->data->addStock(m->getStock());
+	//}
 	return node;
 }
 
@@ -103,7 +106,7 @@ void BinarySearchTree::printHelper(BinaryNode *node) {
 
 	printHelper(node->left);
 
-	cout << node->data->getTitle() << endl;
+	cout << "Title: " << node->data->getTitle() << endl;
 
 	printHelper(node->right);
 }

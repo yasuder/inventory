@@ -27,7 +27,6 @@ Inventory::~Inventory() {
 
 bool Inventory::addMovie(string str) {
 	char type = str[0];
-	cout << "MOVIE TYPE: " << type << endl;
 	stringstream ss(str.substr(3));
 	string stock, director, title, extra;
 
@@ -70,7 +69,7 @@ bool Inventory::addCustomer(string id, string lastName, string firstName) {
 	Customer *temp = new Customer(id, firstName, lastName, ctn);
 	customerList.add(temp->getCustomerID(), temp);
 
-	return true; // CHANGE THIS
+	return true;
 }
 
 bool Inventory::borrowMovie(string title, string customerID) {
@@ -110,9 +109,8 @@ void Inventory::executeCommand(string str)
 		string id;
 		ss >> id;
 		Customer *temp = customerList.getValue(id);
-		if (temp != NULL) {
-			temp->getTransactions().printHistory();
-		}
+		cout << "Transaction History for " << temp->getLastName() << ", " << temp->getFirstName() << endl;
+		temp->getTransactions().printHistory();
 	}
 	else if (action == "B") {
 		ss >> customerId >> mediaType >> movieType;
@@ -120,9 +118,7 @@ void Inventory::executeCommand(string str)
 			getline(ss, title, ',');
 			getline(ss, year, ',');
 			m = movieList.getValue(title);
-			cout << "CONTAINS: " << movieList.containsKey(title) << endl;
-			cout << "STOCK   : " << m->getStock() << endl;
-			if (movieList.containsKey(title) && m->getStock() > 0) {
+			if (m->getStock() > 0) {
 				if (!borrowMovie(title, customerId)) {
 					cout << "Could not perform action BORROW for customer " << 
 						customerId << " for item " << title << endl;
@@ -156,15 +152,45 @@ void Inventory::executeCommand(string str)
 		}
 	}
 	else if (action == "R") {
+		cout << str << endl;
 		ss >> customerId >> mediaType >> movieType;
 		if (movieType == "F") {
-
+			getline(ss, title, ',');
+			getline(ss, year, ',');
+			m = movieList.getValue(title);
+			cout << "CONTAINS: " << movieList.containsKey(title) << endl;
+			cout << "STOCK   : " << m->getStock() << endl;
+			if (m->getStock() > 0) {
+				if (!returnMovie(title, customerId)) {
+					cout << "Could not perform action RETURN for customer " <<
+						customerId << " for item " << title << endl;
+				}
+			}
 		}
 		else if (movieType == "D") {
-
+			ss >> director >> title;
+			getline(ss, director, ',');
+			getline(ss, title, ',');
+			m = movieList.getValue(title);
+			if (movieList.containsKey(title) && m->getStock() > 0) {
+				if (!returnMovie(title, customerId)) {
+					cout << "Could not perform action RETURN for customer " <<
+						customerId << " for item " << title << endl;
+				}
+			}
 		}
 		else if (movieType == "C") {
-
+			ss >> month >> year;
+			getline(ss, extra, ',');
+			/*
+			m = movieList.getValue(title);
+			if (m != NULL && m->getStock() > 0) {
+			if (!borrowMovie(title, customerId)) {
+			cout << "Could not perform action BORROW for customer " <<
+			customerId << " for item " << title << endl;
+			}
+			}
+			*/
 		}
 	}
 }
@@ -247,15 +273,21 @@ void Inventory::executeCommand(string str)
 */
 
 void Inventory::printInventory() {
+	cout << endl;
+	cout << "CURRENT INVENTORY" << endl;
+	cout << endl;
 	cout << "Comedy Movies: " << endl;
+	cout << "______________" << endl;
 	comedyTree.print();
 	cout << endl;
 
 	cout << "Drama Movies: " << endl;
+	cout << "______________" << endl;
 	dramaTree.print();
 	cout << endl;
 
 	cout << "Classic Movies: " << endl;
+	cout << "______________" << endl;
 	classicTree.print();
 	cout << endl;
 }
@@ -315,7 +347,6 @@ void Inventory::readCommandFile(string filename)
 		string type;
 		while (getline(infile, line)) {
 			stringstream iss(line);
-			cout <<  "---" << line << endl;
 			executeCommand(line);
 		}
 		infile.close();
