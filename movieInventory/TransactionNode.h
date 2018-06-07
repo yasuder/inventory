@@ -12,13 +12,17 @@ using namespace std;
 
 class TransactionNode {
 public:
+	/** a constructor which take action type and move title as parameter **/
 	TransactionNode(char actionType, string movieTitle);
+	 /** destructor to clean up un nessary transaction  */v
 	virtual ~TransactionNode();
-
+        /**print all the transaction  **/
 	void printTransaction();
+	/**this will get the action type   **/
 	char getActionType();
+	 /** this will get the moveie title   **/
 	string getMovieTitle();
-
+/**  this is a pointer to the privious node  **/
 	TransactionNode* prev; // technically points to the NEXT node, but we want to insert newest nodes at the front so it's called prev
 
 
