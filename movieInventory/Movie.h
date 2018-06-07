@@ -26,7 +26,7 @@ protected:
 
 public:
 	Movie();
-	~Movie();
+	virtual ~Movie();
 
 	bool borrowBy(string customerID);// if possible, borrow this Movie to the customer with given customerID
 	bool returnBy(string customerID); // if possible, return this Movie to the inventory from customer with given customerID
@@ -37,6 +37,7 @@ public:
 	string getDirector();
 	int getReleaseYear();
 
+	void addStock(int n);
 	int compareMovie(const Movie& m)const;
 	vector<string> getRenters();
 

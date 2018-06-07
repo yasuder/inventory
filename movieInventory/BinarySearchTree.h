@@ -14,6 +14,7 @@ public:
 
 	bool add(Movie *m);
 	bool contains(Movie *m);
+	Movie* search(string key);
 	void clear();
 	void print();
 
@@ -23,7 +24,8 @@ private:
 	int size;
 
 	BinaryNode* clear(BinaryNode *curr);
-	bool addHelper(Movie *m, BinaryNode *curr);
+	BinaryNode* addHelper(Movie *m, BinaryNode* node);
+	BinaryNode* searchHelper(BinaryNode* root, string key);
 	bool containsHelper(Movie *m, BinaryNode *curr);
 	void clearHelper(BinaryNode *curr);
 	void printHelper(BinaryNode *curr);

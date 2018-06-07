@@ -14,7 +14,15 @@ BinarySearchTree::~BinarySearchTree() {
 }
 
 bool BinarySearchTree::add(Movie *m) {
-	return addHelper(m, root);
+	if (search(m->getTitle()) != NULL) {
+		Movie* temp = search(m->getTitle());
+		temp->addStock(m->getStock());
+		return false;
+	}
+	else {
+		root = addHelper(m, root);
+		return true;
+	}
 }
 
 void BinarySearchTree::clear() {
@@ -29,20 +37,33 @@ bool BinarySearchTree::contains(Movie *m) {
 	return containsHelper(m, root);
 }
 
-bool BinarySearchTree::addHelper(Movie *m, BinaryNode *curr) {
-	if (curr != nullptr) {
-		if (m < curr->data) {
-			return addHelper(m, curr->left);
-		}
-		else if (m > curr->data) {
-			return addHelper(m, curr->right);
-		}
-		else {
-			return false;
-		}
+Movie* BinarySearchTree::search(string key) {
+	return searchHelper(root, key)->data;
+}
+BinaryNode* BinarySearchTree::searchHelper(BinaryNode* root, string key) {
+	if (root == NULL || root->data->getTitle() == key) {
+		return root;
 	}
-	curr = new BinaryNode(m, nullptr, nullptr);
-	return true;
+
+	if (root->data->getTitle() < key) {
+		return searchHelper(root->right, key);
+	}
+
+	return searchHelper(root->left, key);
+}
+
+BinaryNode* BinarySearchTree::addHelper(Movie *m, BinaryNode* node) {
+	if (node == NULL) {
+		return new BinaryNode(m, nullptr, nullptr);
+	}
+
+	if (m < node->data) {
+		node->left = addHelper(m, node->left);
+	}
+	else if (m > node->data) {
+		node->right = addHelper(m, node->right);
+	}
+	return node;
 }
 
 bool BinarySearchTree::containsHelper(Movie *m, BinaryNode *curr) {
@@ -82,17 +103,14 @@ BinaryNode* BinarySearchTree::clear(BinaryNode *curr) {
 	return nullptr;
 }
 
-void BinarySearchTree::printHelper(BinaryNode *curr) {
-	if (curr != nullptr) {
-		if (curr->left != nullptr) {
-			printHelper(curr->left);
-			cout << curr->data->getTitle() << endl;
-		}
-		cout << curr->data->getTitle() << endl;
-		if (curr->right != nullptr) {
-			printHelper(curr->right);
-			cout << curr->data->getTitle() << endl;
-		}
-
+void BinarySearchTree::printHelper(BinaryNode *node) {
+	if (node == NULL) {
+		return;
 	}
+
+	printHelper(node->left);
+
+	cout << node->data->getTitle() << endl;
+
+	printHelper(node->right);
 }

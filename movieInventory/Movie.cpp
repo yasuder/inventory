@@ -34,6 +34,11 @@ vector<string> Movie::getRenters() {
 	return customerList.getKeys();
 }
 
+void Movie::addStock(int n) {
+	stock += n;
+}
+
+
 int Movie::compareMovie(const Movie& m)const {
 	if ((int)MovieTypes(this->type) > (int)MovieTypes(m.type)) {
 		return 1;

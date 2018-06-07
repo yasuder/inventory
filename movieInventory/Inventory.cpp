@@ -27,6 +27,7 @@ Inventory::~Inventory() {
 
 bool Inventory::addMovie(string str) {
 	char type = str[0];
+	cout << "MOVIE TYPE: " << type << endl;
 	stringstream ss(str.substr(3));
 	string stock, director, title, extra;
 
@@ -46,14 +47,17 @@ bool Inventory::addMovie(string str) {
 	case 'F':
 		//F, 10, Nora Ephron, Sleepless in Seattle, 1993
 		m = new Comedy(stoi(stock), title, director, stoi(extra), mtn);
+		//movieList.add(title, m);
 		return comedyTree.add(m);
 	case 'D':
 		//D, 10, Barry Levinson, Good Morning Vietnam, 1988
 		m = new Drama(stoi(stock), title, director, stoi(extra), mtn);
+		//movieList.add(title, m);
 		return dramaTree.add(m);
 	case 'C':
 		//C, 10, Victor Fleming, The Wizard of Oz, Judy Garland 7 1939
 		m = new Classic(stoi(stock), title, director, extra, mtn);
+		//movieList.add(title, m);
 		return classicTree.add(m);
 	default:
 		cout << "invalid movie code: " << type << endl;
@@ -96,10 +100,75 @@ void Inventory::executeCommand(string str)
 	stringstream ss(str);
 	Movie *m;
 	Customer *c;
-	string type, customerId, mediaType, movieType, director, title, extra, month;
-	getline(ss, type, ' ');
-	
-	char action = type[0];
+	string action, customerId, mediaType, movieType, director, title, extra, month, year;
+	ss >> action;
+
+	if (action == "I") {
+		this->printInventory();
+	}
+	else if (action == "H") {
+		string id;
+		ss >> id;
+		Customer *temp = customerList.getValue(id);
+		if (temp != NULL) {
+			temp->getTransactions().printHistory();
+		}
+	}
+	else if (action == "B") {
+		ss >> customerId >> mediaType >> movieType;
+		if (movieType == "F") {
+			getline(ss, title, ',');
+			getline(ss, year, ',');
+			m = movieList.getValue(title);
+			cout << "CONTAINS: " << movieList.containsKey(title) << endl;
+			cout << "STOCK   : " << m->getStock() << endl;
+			if (movieList.containsKey(title) && m->getStock() > 0) {
+				if (!borrowMovie(title, customerId)) {
+					cout << "Could not perform action BORROW for customer " << 
+						customerId << " for item " << title << endl;
+				}
+			}
+		}
+		else if (movieType == "D") {
+			ss >> director >> title;
+			getline(ss, director, ',');
+			getline(ss, title, ',');
+			m = movieList.getValue(title);
+			if (movieList.containsKey(title) && m->getStock() > 0) {
+				if (!borrowMovie(title, customerId)) {
+					cout << "Could not perform action BORROW for customer " <<
+						customerId << " for item " << title << endl;
+				}
+			}
+		}
+		else if (movieType == "C") {
+			ss >> month >> year;
+			getline(ss, extra, ',');
+			/*
+			m = movieList.getValue(title);
+			if (m != NULL && m->getStock() > 0) {
+				if (!borrowMovie(title, customerId)) {
+					cout << "Could not perform action BORROW for customer " <<
+						customerId << " for item " << title << endl;
+				}
+			}
+			*/
+		}
+	}
+	else if (action == "R") {
+		ss >> customerId >> mediaType >> movieType;
+		if (movieType == "F") {
+
+		}
+		else if (movieType == "D") {
+
+		}
+		else if (movieType == "C") {
+
+		}
+	}
+}
+	/*
 	switch (action) {
 	case 'B':
 	case 'R':
@@ -133,7 +202,7 @@ void Inventory::executeCommand(string str)
 			getline(ss, director);
 
 			// get the movie from BST
-			m = classicTree.search(month, extra, director);
+			m = movieList.getValue(title);
 
 			if (m == nullptr) {
 				cout << "movie doesn't exist: " << movieType << " " << month << " " << extra << " " << director << endl;
@@ -175,11 +244,20 @@ void Inventory::executeCommand(string str)
 		break;
 	}
 }
+*/
 
 void Inventory::printInventory() {
+	cout << "Comedy Movies: " << endl;
 	comedyTree.print();
+	cout << endl;
+
+	cout << "Drama Movies: " << endl;
 	dramaTree.print();
+	cout << endl;
+
+	cout << "Classic Movies: " << endl;
 	classicTree.print();
+	cout << endl;
 }
 
 void Inventory::printHistory(string customerID) {
@@ -234,9 +312,11 @@ void Inventory::readCommandFile(string filename)
 	ifstream infile(filename);
 	if (infile.is_open()) {
 		string line;
+		string type;
 		while (getline(infile, line)) {
+			stringstream iss(line);
+			cout <<  "---" << line << endl;
 			executeCommand(line);
-			ss.clear();
 		}
 		infile.close();
 	}
