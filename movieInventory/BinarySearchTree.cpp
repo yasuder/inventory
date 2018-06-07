@@ -14,15 +14,8 @@ BinarySearchTree::~BinarySearchTree() {
 }
 
 bool BinarySearchTree::add(Movie *m) {
-	if (search(m->getTitle()) != NULL) {
-		Movie* temp = search(m->getTitle());
-		temp->addStock(m->getStock());
-		return false;
-	}
-	else {
 		root = addHelper(m, root);
 		return true;
-	}
 }
 
 void BinarySearchTree::clear() {
