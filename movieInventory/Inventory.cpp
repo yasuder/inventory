@@ -94,8 +94,9 @@ bool Inventory::returnMovie(string title, string customerID) {
 void Inventory::executeCommand(string str)
 {
 	stringstream ss(str);
+	Movie *m;
 	Customer *c;
-	string type, customerId, mediaType, movieType, director, title, extra;
+	string type, customerId, mediaType, movieType, director, title, extra, month;
 	getline(ss, type, ' ');
 	
 	char action = type[0];
@@ -127,14 +128,18 @@ void Inventory::executeCommand(string str)
 		}
 		else if (movieType == "C") {
 			//B 4444 D C 2 1971 Malcolm McDowell
-			getline(ss, extra, ' ');
+			getline(ss, month, ' ');
 			getline(ss, extra, ' ');
 			getline(ss, director);
 
-			// NO TITLE IN BORROW COMMAND??
-			// need to somehow get the movie object based on
-			// either director or the year/month
-			title = "MISSING TITLE"; // TODO
+			// get the movie from BST
+			m = classicTree.search(month, extra, director);
+
+			if (m == nullptr) {
+				cout << "movie doesn't exist: " << movieType << " " << month << " " << extra << " " << director << endl;
+				return;
+			}
+			title = m->getTitle();
 		}
 		else {
 			cout << "invalid video code: " << movieType << endl;
