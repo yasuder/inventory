@@ -14,7 +14,7 @@ Drama::Drama(int stock, string title, string director, int year, int mtn) {
 }
 
 Drama::~Drama() {
-	delete this;
+	customerList.clear();
 }
 
 void Drama::print() {

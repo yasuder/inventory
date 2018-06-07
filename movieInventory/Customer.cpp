@@ -43,7 +43,7 @@ bool Customer::addTransaction(char actionType, string movieTitle) {
 }
 
 bool Customer::borrowMovie(string movieID) {
-	if (movieList.getValue(movieID) != NULL) {
+	if (!movieList.getValue(movieID)) {
 		movieList.add(movieID, true);
 		return true;
 	}
@@ -51,7 +51,7 @@ bool Customer::borrowMovie(string movieID) {
 }
 
 bool Customer::returnMovie(string movieID) {
-	if (movieList.getValue(movieID) != NULL) {
+	if (!movieList.getValue(movieID)) {
 		movieList.remove(movieID);
 		return true;
 	}

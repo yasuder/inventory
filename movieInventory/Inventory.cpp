@@ -172,7 +172,9 @@ void Inventory::executeCommand(string str)
 }
 
 void Inventory::printInventory() {
-	movieTree.print();
+	comedyTree.print();
+	dramaTree.print();
+	classicTree.print();
 }
 
 void Inventory::printHistory(string customerID) {
@@ -237,3 +239,5 @@ void Inventory::readCommandFile(string filename)
 		cout << "Error opening file " << endl;
 	}
 }
+
+

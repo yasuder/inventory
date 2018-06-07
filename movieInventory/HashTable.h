@@ -153,23 +153,24 @@ inline void HashTable<KeyType, ValueType>::add(const KeyType &key, const ValueTy
 template<class KeyType, class ValueType>
 inline bool HashTable<KeyType, ValueType>::containsKey(const KeyType &key)
 {
-	return getValue(key) != nullptr;
+	return !getValue(key);
 }
 
 template<class KeyType, class ValueType>
 inline ValueType HashTable<KeyType, ValueType>::getValue(const KeyType &key) const
 {
+	ValueType returnValue;
 	int index = getHash(key);
 	HashEntry<KeyType, ValueType>* current = table[index];
 
 	while (current != nullptr) {
 		if (current->getKey() == key) {
-			return current->getValue();
+			returnValue = current->getValue();
 		}
 		current = current->next;
 	}
 
-	return nullptr;
+	return returnValue;
 }
 
 template<class KeyType, class ValueType>

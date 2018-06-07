@@ -16,7 +16,6 @@ private:
 	int releaseMonth;
 	string majorFirsNa;
 	string majorLastNa;
-	BinarySearchTree classicMovies;
 
 public:
 	Classic(int stock, string title, string director, string extra, int mtn); //default constructor

@@ -9,8 +9,8 @@ BinaryNode::BinaryNode() {
 
 BinaryNode::BinaryNode(Movie *m, BinaryNode *left, BinaryNode *right) {
 	data = m;
-	left = nullptr;
-	right = nullptr;
+	this->left = left;
+	this->right = right;
 }
 
 BinaryNode::~BinaryNode() {

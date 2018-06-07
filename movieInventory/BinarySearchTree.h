@@ -27,6 +27,7 @@ private:
 	bool containsHelper(Movie *m, BinaryNode *curr);
 	void clearHelper(BinaryNode *curr);
 	void printHelper(BinaryNode *curr);
+
 };
 
 

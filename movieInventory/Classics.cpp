@@ -26,7 +26,7 @@ Classic::Classic(int stock, string title, string director, string extra, int mtn
 Classic::~Classic() {
 	this->majorFirsNa = "";
 	this->majorLastNa = "";
-	delete  this;
+	customerList.clear();
 }
 
 int Classic::getReleaseMonth() {

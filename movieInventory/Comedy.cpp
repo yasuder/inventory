@@ -13,7 +13,7 @@ Comedy::Comedy(int stock, string title, string director, int year, int mtn) {
 }
 
 Comedy::~Comedy() {
-	delete this;
+	customerList.clear();
 }
 
 void Comedy::print() {

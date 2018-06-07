@@ -10,11 +10,10 @@ Movie::~Movie() {
 	this->director = "";
 	this->year = 0;
 	this->customerList.clear();
-	delete this;
 }
 
 bool Movie::borrowBy(string customerID) {
-	if (customerList.getValue(customerID) != NULL && this->stock > 0) {
+	if (!customerList.getValue(customerID) && this->stock > 0) {
 		customerList.add(customerID, true);
 		this->stock--;
 		return true;
@@ -23,7 +22,7 @@ bool Movie::borrowBy(string customerID) {
 }
 
 bool Movie::returnBy(string customerID) {
-	if (customerList.getValue(customerID) != NULL) {
+	if (!customerList.getValue(customerID)) {
 		customerList.remove(customerID);
 		this->stock++;
 		return true;
